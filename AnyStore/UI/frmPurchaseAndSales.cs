@@ -2,13 +2,8 @@
 using AnyStore.DAL;
 using DGVPrinterHelper;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 using System.Windows.Forms;
 
@@ -16,15 +11,6 @@ namespace AnyStore.UI
 {
     public partial class frmPurchaseAndSales : Form
     {
-        public frmPurchaseAndSales()
-        {
-            InitializeComponent();
-        }
-
-        private void pictureBoxClose_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-        }
         DeaCustDAL dcDAL = new DeaCustDAL();
         productsDAL pDAL = new productsDAL();
         userDAL uDAL = new userDAL();
@@ -32,6 +18,18 @@ namespace AnyStore.UI
         transactionDetailDAL tdDAL = new transactionDetailDAL();
 
         DataTable transactionDT = new DataTable();
+        FormHelper formHelper = new FormHelper();
+        public frmPurchaseAndSales()
+        {
+            InitializeComponent();
+            formHelper.FormateDataGridView(dgvAddedProducts);
+        }
+
+        private void pictureBoxClose_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+        }
+
         private void frmPurchaseAndSales_Load(object sender, EventArgs e)
         {
             //Get the transactionType value from frmUserDashboard
@@ -44,6 +42,30 @@ namespace AnyStore.UI
             transactionDT.Columns.Add("Rate");
             transactionDT.Columns.Add("Quantity");
             transactionDT.Columns.Add("Total");
+
+
+            // Populate ComboBoxes
+            LoadDealerCustomerComboBox();
+            LoadProductComboBox();
+        }
+        private void LoadDealerCustomerComboBox()
+        {
+            DataTable dt = dcDAL.Select();
+            cmbSearch.DataSource = dt;
+            cmbSearch.DisplayMember = "name";
+            cmbSearch.ValueMember = "id";
+            cmbSearch.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbSearch.AutoCompleteSource = AutoCompleteSource.ListItems;
+        }
+
+        private void LoadProductComboBox()
+        {
+            DataTable dt = pDAL.Select();
+            cmbSearchProduct.DataSource = dt;
+            cmbSearchProduct.DisplayMember = "name";
+            cmbSearchProduct.ValueMember = "id";
+            cmbSearchProduct.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cmbSearchProduct.AutoCompleteSource = AutoCompleteSource.ListItems;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
@@ -313,6 +335,45 @@ namespace AnyStore.UI
                     MessageBox.Show("Transaction Failed");
                 }
             }
+        }
+
+
+        private void cmbSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Get the selected value from the combo box
+            string keyword = cmbSearch.Text;
+
+            //Write the code to get the details and set the value on text boxes
+            DeaCustBLL dc = dcDAL.SearchDealerCustomerForTransaction(keyword);
+
+            //Now transfer or set the value from DeCustBLL to textboxes
+            txtName.Text = dc.name;
+            txtEmail.Text = dc.email;
+            txtContact.Text = dc.contact;
+            txtAddress.Text = dc.address;
+        }
+
+        private void cmbSearchProduct_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Get the selected value from the combo box
+            string keyword = cmbSearchProduct.Text;
+
+            //Search the product and display on respective textboxes
+            productsBLL p = pDAL.GetProductsForTransaction(keyword);
+
+            //Set the values on textboxes based on p object
+            txtProductName.Text = p.name;
+            txtInventory.Text = p.qty.ToString();
+            txtRate.Text = p.rate.ToString();
+        }
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSearch_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

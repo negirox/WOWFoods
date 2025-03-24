@@ -77,6 +77,10 @@
             this.lblDiscount = new System.Windows.Forms.Label();
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.lblcalculationTitle = new System.Windows.Forms.Label();
+            this.cmbSearch = new System.Windows.Forms.ComboBox();
+            this.cmbSearchProduct = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
@@ -123,6 +127,7 @@
             // 
             // pnlDeaCust
             // 
+            this.pnlDeaCust.Controls.Add(this.cmbSearch);
             this.pnlDeaCust.Controls.Add(this.dtpBillDate);
             this.pnlDeaCust.Controls.Add(this.txtName);
             this.pnlDeaCust.Controls.Add(this.txtContact);
@@ -154,11 +159,12 @@
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtName.Location = new System.Drawing.Point(81, 73);
+            this.txtName.Location = new System.Drawing.Point(77, 73);
             this.txtName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(296, 29);
             this.txtName.TabIndex = 11;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtContact
             // 
@@ -191,11 +197,12 @@
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(81, 31);
+            this.txtSearch.Location = new System.Drawing.Point(350, 31);
             this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(296, 29);
+            this.txtSearch.Size = new System.Drawing.Size(67, 29);
             this.txtSearch.TabIndex = 7;
+            this.txtSearch.Visible = false;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // lblAddress
@@ -263,6 +270,7 @@
             this.lblSearch.Size = new System.Drawing.Size(61, 23);
             this.lblSearch.TabIndex = 1;
             this.lblSearch.Text = "Search";
+            this.lblSearch.Click += new System.EventHandler(this.lblSearch_Click);
             // 
             // lblDeaCustTitle
             // 
@@ -277,6 +285,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.cmbSearchProduct);
             this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Controls.Add(this.txtRate);
             this.panel2.Controls.Add(this.TxtQty);
@@ -300,7 +309,7 @@
             this.btnAdd.BackColor = System.Drawing.Color.SpringGreen;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(1443, 18);
+            this.btnAdd.Location = new System.Drawing.Point(1365, 21);
             this.btnAdd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(137, 44);
@@ -351,11 +360,12 @@
             // txtSearchProduct
             // 
             this.txtSearchProduct.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearchProduct.Location = new System.Drawing.Point(81, 32);
+            this.txtSearchProduct.Location = new System.Drawing.Point(13, 59);
             this.txtSearchProduct.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearchProduct.Name = "txtSearchProduct";
-            this.txtSearchProduct.Size = new System.Drawing.Size(192, 29);
+            this.txtSearchProduct.Size = new System.Drawing.Size(14, 29);
             this.txtSearchProduct.TabIndex = 7;
+            this.txtSearchProduct.WordWrap = false;
             this.txtSearchProduct.TextChanged += new System.EventHandler(this.txtSearchProduct_TextChanged);
             // 
             // lblProductName
@@ -457,6 +467,8 @@
             // 
             // pnlCalculation
             // 
+            this.pnlCalculation.Controls.Add(this.textBox1);
+            this.pnlCalculation.Controls.Add(this.label1);
             this.pnlCalculation.Controls.Add(this.btnSave);
             this.pnlCalculation.Controls.Add(this.txtReturnAmount);
             this.pnlCalculation.Controls.Add(this.txtPaidAmount);
@@ -482,10 +494,10 @@
             this.btnSave.BackColor = System.Drawing.Color.Teal;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(297, 341);
+            this.btnSave.Location = new System.Drawing.Point(297, 352);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(289, 49);
+            this.btnSave.Size = new System.Drawing.Size(216, 38);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -493,19 +505,20 @@
             // 
             // txtReturnAmount
             // 
+            this.txtReturnAmount.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtReturnAmount.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtReturnAmount.ForeColor = System.Drawing.Color.DarkRed;
-            this.txtReturnAmount.Location = new System.Drawing.Point(179, 284);
+            this.txtReturnAmount.Location = new System.Drawing.Point(179, 304);
             this.txtReturnAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtReturnAmount.Name = "txtReturnAmount";
             this.txtReturnAmount.ReadOnly = true;
-            this.txtReturnAmount.Size = new System.Drawing.Size(524, 47);
+            this.txtReturnAmount.Size = new System.Drawing.Size(462, 40);
             this.txtReturnAmount.TabIndex = 12;
             // 
             // txtPaidAmount
             // 
             this.txtPaidAmount.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPaidAmount.Location = new System.Drawing.Point(179, 229);
+            this.txtPaidAmount.Location = new System.Drawing.Point(179, 253);
             this.txtPaidAmount.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtPaidAmount.Name = "txtPaidAmount";
             this.txtPaidAmount.Size = new System.Drawing.Size(524, 29);
@@ -515,7 +528,7 @@
             // txtGrandTotal
             // 
             this.txtGrandTotal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtGrandTotal.Location = new System.Drawing.Point(179, 180);
+            this.txtGrandTotal.Location = new System.Drawing.Point(179, 211);
             this.txtGrandTotal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtGrandTotal.Name = "txtGrandTotal";
             this.txtGrandTotal.ReadOnly = true;
@@ -538,6 +551,7 @@
             this.txtVat.Location = new System.Drawing.Point(179, 133);
             this.txtVat.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtVat.Name = "txtVat";
+            this.txtVat.ReadOnly = true;
             this.txtVat.Size = new System.Drawing.Size(524, 29);
             this.txtVat.TabIndex = 8;
             this.txtVat.TextChanged += new System.EventHandler(this.txtVat_TextChanged);
@@ -557,7 +571,7 @@
             // 
             this.lblReturnAmount.AutoSize = true;
             this.lblReturnAmount.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReturnAmount.Location = new System.Drawing.Point(9, 288);
+            this.lblReturnAmount.Location = new System.Drawing.Point(9, 304);
             this.lblReturnAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblReturnAmount.Name = "lblReturnAmount";
             this.lblReturnAmount.Size = new System.Drawing.Size(128, 23);
@@ -568,7 +582,7 @@
             // 
             this.lblPaidAmount.AutoSize = true;
             this.lblPaidAmount.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPaidAmount.Location = new System.Drawing.Point(9, 233);
+            this.lblPaidAmount.Location = new System.Drawing.Point(9, 253);
             this.lblPaidAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPaidAmount.Name = "lblPaidAmount";
             this.lblPaidAmount.Size = new System.Drawing.Size(109, 23);
@@ -579,7 +593,7 @@
             // 
             this.lblGrandTotal.AutoSize = true;
             this.lblGrandTotal.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGrandTotal.Location = new System.Drawing.Point(9, 183);
+            this.lblGrandTotal.Location = new System.Drawing.Point(9, 217);
             this.lblGrandTotal.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblGrandTotal.Name = "lblGrandTotal";
             this.lblGrandTotal.Size = new System.Drawing.Size(98, 23);
@@ -593,9 +607,9 @@
             this.lblVat.Location = new System.Drawing.Point(9, 137);
             this.lblVat.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblVat.Name = "lblVat";
-            this.lblVat.Size = new System.Drawing.Size(68, 23);
+            this.lblVat.Size = new System.Drawing.Size(78, 23);
             this.lblVat.TabIndex = 3;
-            this.lblVat.Text = "VAT (%)";
+            this.lblVat.Text = "SGST (%)";
             // 
             // lblDiscount
             // 
@@ -629,6 +643,45 @@
             this.lblcalculationTitle.Size = new System.Drawing.Size(159, 23);
             this.lblcalculationTitle.TabIndex = 0;
             this.lblcalculationTitle.Text = "Calculation Details";
+            // 
+            // cmbSearch
+            // 
+            this.cmbSearch.FormattingEnabled = true;
+            this.cmbSearch.Location = new System.Drawing.Point(77, 30);
+            this.cmbSearch.Name = "cmbSearch";
+            this.cmbSearch.Size = new System.Drawing.Size(271, 24);
+            this.cmbSearch.TabIndex = 13;
+            this.cmbSearch.SelectedIndexChanged += new System.EventHandler(this.cmbSearch_SelectedIndexChanged);
+            // 
+            // cmbSearchProduct
+            // 
+            this.cmbSearchProduct.FormattingEnabled = true;
+            this.cmbSearchProduct.Location = new System.Drawing.Point(73, 33);
+            this.cmbSearchProduct.Name = "cmbSearchProduct";
+            this.cmbSearchProduct.Size = new System.Drawing.Size(207, 24);
+            this.cmbSearchProduct.TabIndex = 13;
+            this.cmbSearchProduct.SelectedIndexChanged += new System.EventHandler(this.cmbSearchProduct_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(9, 170);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 23);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "CGST (%)";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(179, 174);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(524, 29);
+            this.textBox1.TabIndex = 15;
             // 
             // frmPurchaseAndSales
             // 
@@ -713,5 +766,9 @@
         private System.Windows.Forms.Label lblDiscount;
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label lblcalculationTitle;
+        private System.Windows.Forms.ComboBox cmbSearch;
+        private System.Windows.Forms.ComboBox cmbSearchProduct;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
