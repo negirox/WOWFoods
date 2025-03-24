@@ -2,10 +2,11 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using Store.Models.BLL;
+using Store.Repository.Logging;
 
 namespace Store.Repository.Repository
 {
-    public class productsDAL
+    public class ProductsDAL : IProductsDAL
     {
         #region Select method for Product Module
         public DataTable Select()

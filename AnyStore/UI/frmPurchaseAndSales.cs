@@ -1,6 +1,7 @@
 ﻿using AnyStore.BLL;
 using AnyStore.DAL;
 using DGVPrinterHelper;
+using Store.Repository.Repository;
 using System;
 using System.Data;
 using System.Drawing;
