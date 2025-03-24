@@ -24,8 +24,8 @@ namespace AnyStore.UI
             this.Hide();
         }
 
-        categoriesBLL c = new categoriesBLL();
-        categoriesDAL dal = new categoriesDAL();
+        CategoriesBLL c = new CategoriesBLL();
+        CategoriesDAL dal = new CategoriesDAL();
         userDAL udal = new userDAL();
 
         private void btnADD_Click(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace AnyStore.UI
 
             //Getting ID in Added by field
             string loggedUser = frmLogin.loggedIn;
-            userBLL usr = udal.GetIDFromUsername(loggedUser);
+            UserBLL usr = udal.GetIDFromUsername(loggedUser);
             //Passign the id of Logged in User in added by field
             c.added_by = usr.id;
 
@@ -93,7 +93,7 @@ namespace AnyStore.UI
             c.added_date = DateTime.Now;
             //Getting ID in Added by field
             string loggedUser = frmLogin.loggedIn;
-            userBLL usr = udal.GetIDFromUsername(loggedUser);
+            UserBLL usr = udal.GetIDFromUsername(loggedUser);
             //Passign the id of Logged in User in added by field
             c.added_by = usr.id;
 
@@ -160,5 +160,9 @@ namespace AnyStore.UI
                 dgvCategories.DataSource = dt;
             }
         }
+    }
+
+    internal class categoriesDAL : CategoriesDAL
+    {
     }
 }

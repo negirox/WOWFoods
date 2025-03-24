@@ -81,6 +81,7 @@
             this.cmbSearchProduct = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxClose)).BeginInit();
             this.pnlDeaCust.SuspendLayout();
@@ -467,6 +468,7 @@
             // 
             // pnlCalculation
             // 
+            this.pnlCalculation.Controls.Add(this.button1);
             this.pnlCalculation.Controls.Add(this.textBox1);
             this.pnlCalculation.Controls.Add(this.label1);
             this.pnlCalculation.Controls.Add(this.btnSave);
@@ -494,10 +496,10 @@
             this.btnSave.BackColor = System.Drawing.Color.Teal;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(297, 352);
+            this.btnSave.Location = new System.Drawing.Point(179, 352);
             this.btnSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(216, 38);
+            this.btnSave.Size = new System.Drawing.Size(155, 38);
             this.btnSave.TabIndex = 13;
             this.btnSave.Text = "SAVE";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -683,6 +685,20 @@
             this.textBox1.Size = new System.Drawing.Size(524, 29);
             this.textBox1.TabIndex = 15;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DeepPink;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(359, 352);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(155, 38);
+            this.button1.TabIndex = 16;
+            this.button1.Text = "PRINT";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmPurchaseAndSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -770,5 +786,6 @@
         private System.Windows.Forms.ComboBox cmbSearchProduct;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -19,8 +19,8 @@ namespace AnyStore.UI
             InitializeComponent();
         }
 
-        loginBLL l = new loginBLL();
-        loginDAL dal = new loginDAL();
+        LoginBLL l = new LoginBLL();
+        LoginDAL dal = new LoginDAL();
         public static string loggedIn;
 
         private void pboxClose_Click(object sender, EventArgs e)
@@ -36,7 +36,7 @@ namespace AnyStore.UI
             l.user_type = cmbUserType.Text.Trim();
 
             //Checking the login credentials
-            bool sucess = dal.loginCheck(l);
+            bool sucess = dal.LoginCheck(l);
             if(sucess==true)
             {
                 //Login Successfull

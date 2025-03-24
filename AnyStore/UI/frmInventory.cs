@@ -17,7 +17,7 @@ namespace AnyStore.UI
         {
             InitializeComponent();
         }
-        categoriesDAL cdal = new categoriesDAL();
+        CategoriesDAL cdal = new CategoriesDAL();
         productsDAL pdal = new productsDAL();
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {

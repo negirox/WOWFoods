@@ -109,7 +109,7 @@ namespace AnyStore.UI
             }
 
             //Search the product and display on respective textboxes
-            productsBLL p = pDAL.GetProductsForTransaction(keyword);
+            ProductsBLL p = pDAL.GetProductsForTransaction(keyword);
 
             //Set the values on textboxes based on p object
             txtProductName.Text = p.name;
@@ -218,7 +218,7 @@ namespace AnyStore.UI
         private void btnSave_Click(object sender, EventArgs e)
         {
             //Get the Values from PurchaseSales Form First
-            transactionsBLL transaction = new transactionsBLL();
+            TransactionsBLL transaction = new TransactionsBLL();
 
             transaction.type = lblTop.Text;
 
@@ -235,7 +235,7 @@ namespace AnyStore.UI
 
             //Get the Username of Logged in user
             string username = frmLogin.loggedIn;
-            userBLL u = uDAL.GetIDFromUsername(username);
+            UserBLL u = uDAL.GetIDFromUsername(username);
 
             transaction.added_by = u.id;
             transaction.transactionDetails = transactionDT;
@@ -254,10 +254,10 @@ namespace AnyStore.UI
                 for(int i=0;i<transactionDT.Rows.Count;i++)
                 {
                     //Get all the details of the product
-                    transactionDetailBLL transactionDetail = new transactionDetailBLL();
+                    TransactionDetailBLL transactionDetail = new TransactionDetailBLL();
                     //Get the Product name and convert it to id
                     string ProductName = transactionDT.Rows[i][0].ToString();
-                    productsBLL p = pDAL.GetProductIDFromName(ProductName);
+                    ProductsBLL p = pDAL.GetProductIDFromName(ProductName);
 
                     transactionDetail.product_id = p.id;
                     transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][1].ToString());
@@ -292,42 +292,6 @@ namespace AnyStore.UI
                 {
                     //Transaction Complete
                     scope.Complete();
-
-                    //Code to Print Bill
-                    DGVPrinter printer = new DGVPrinter();
-
-                    printer.Title = "\r\n\r\n\r\n WOW FOODS \r\n\r\n";
-                    printer.SubTitle = "";
-                    printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
-                    printer.PageNumbers = true;
-                    printer.PageNumberInHeader = false;
-                    printer.PorportionalColumns = true;
-                    printer.HeaderCellAlignment = StringAlignment.Near;
-                    printer.Footer = "Discount: "+ txtDiscount.Text +"% \r\n" + "VAT: " + txtVat.Text + "% \r\n" + "Grand Total: "+ txtGrandTotal.Text + "\r\n\r\n" +"Thank you for doing business with us.";
-                    printer.FooterSpacing = 15;
-                    printer.PrintDataGridView(dgvAddedProducts);
-
-                    MessageBox.Show("Transaction Completed Sucessfully");
-                    //Celar the Data Grid View and Clear all the TExtboxes
-                    dgvAddedProducts.DataSource = null;
-                    dgvAddedProducts.Rows.Clear();
-
-                    txtSearch.Text = "";
-                    txtName.Text = "";
-                    txtEmail.Text = "";
-                    txtContact.Text = "";
-                    txtAddress.Text = "";
-                    txtSearchProduct.Text = "";
-                    txtProductName.Text = "";
-                    txtInventory.Text = "0";
-                    txtRate.Text = "0";
-                    TxtQty.Text = "0";
-                    txtSubTotal.Text = "0";
-                    txtDiscount.Text = "0";
-                    txtVat.Text = "0";
-                    txtGrandTotal.Text = "0";
-                    txtPaidAmount.Text = "0";
-                    txtReturnAmount.Text = "0";
                 }
                 else
                 {
@@ -337,6 +301,45 @@ namespace AnyStore.UI
             }
         }
 
+        private void PrintBill()
+        {
+
+            //Code to Print Bill
+            DGVPrinter printer = new DGVPrinter();
+
+            printer.Title = "\r\n\r\n\r\n WOW FOODS \r\n\r\n";
+            printer.SubTitle = "";
+            printer.SubTitleFormatFlags = StringFormatFlags.LineLimit | StringFormatFlags.NoClip;
+            printer.PageNumbers = true;
+            printer.PageNumberInHeader = false;
+            printer.PorportionalColumns = true;
+            printer.HeaderCellAlignment = StringAlignment.Near;
+            printer.Footer = "Discount: " + txtDiscount.Text + "% \r\n" + "VAT: " + txtVat.Text + "% \r\n" + "Grand Total: " + txtGrandTotal.Text + "\r\n\r\n" + "Thank you for doing business with us.";
+            printer.FooterSpacing = 15;
+            printer.PrintDataGridView(dgvAddedProducts);
+
+            MessageBox.Show("Transaction Completed Sucessfully");
+            //Celar the Data Grid View and Clear all the TExtboxes
+            dgvAddedProducts.DataSource = null;
+            dgvAddedProducts.Rows.Clear();
+
+            txtSearch.Text = "";
+            txtName.Text = "";
+            txtEmail.Text = "";
+            txtContact.Text = "";
+            txtAddress.Text = "";
+            txtSearchProduct.Text = "";
+            txtProductName.Text = "";
+            txtInventory.Text = "0";
+            txtRate.Text = "0";
+            TxtQty.Text = "0";
+            txtSubTotal.Text = "0";
+            txtDiscount.Text = "0";
+            txtVat.Text = "0";
+            txtGrandTotal.Text = "0";
+            txtPaidAmount.Text = "0";
+            txtReturnAmount.Text = "0";
+        }
 
         private void cmbSearch_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -359,7 +362,7 @@ namespace AnyStore.UI
             string keyword = cmbSearchProduct.Text;
 
             //Search the product and display on respective textboxes
-            productsBLL p = pDAL.GetProductsForTransaction(keyword);
+            ProductsBLL p = pDAL.GetProductsForTransaction(keyword);
 
             //Set the values on textboxes based on p object
             txtProductName.Text = p.name;
@@ -374,6 +377,11 @@ namespace AnyStore.UI
         private void lblSearch_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PrintBill();
         }
     }
 }

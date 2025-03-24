@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnyStore.BLL
 {
-    class productsBLL
+    public class ProductsBLL
     {
         //Getters and Setters for Product Module
         public int id { get; set; }

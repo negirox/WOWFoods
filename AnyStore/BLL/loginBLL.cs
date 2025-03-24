@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnyStore.BLL
 {
-    class loginBLL
+    public class LoginBLL
     {
         public string username { get; set; }
         public string password { get; set; }

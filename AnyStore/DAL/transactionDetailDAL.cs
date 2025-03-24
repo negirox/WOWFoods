@@ -16,7 +16,7 @@ namespace AnyStore.DAL
         static string myconnstrng = ConfigurationManager.ConnectionStrings["connstrng"].ConnectionString;
 
         #region Insert Method for Transaction Detail
-        public bool InsertTransactionDetail(transactionDetailBLL td)
+        public bool InsertTransactionDetail(TransactionDetailBLL td)
         {
             //Create a boolean value and set its default value to false
             bool isSuccess = false;

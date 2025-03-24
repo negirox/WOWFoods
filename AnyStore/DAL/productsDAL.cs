@@ -54,7 +54,7 @@ namespace AnyStore.DAL
         }
         #endregion
         #region Method to Insert Product in database
-        public bool Insert(productsBLL p)
+        public bool Insert(ProductsBLL p)
         {
             //Creating Boolean Variable and set its default value to false
             bool isSuccess = false;
@@ -109,7 +109,7 @@ namespace AnyStore.DAL
         }
         #endregion
         #region Method to Update Product in Database
-        public bool Update(productsBLL p)
+        public bool Update(ProductsBLL p)
         {
             //create a boolean variable and set its initial value to false
             bool isSuccess = false;
@@ -165,7 +165,7 @@ namespace AnyStore.DAL
         }
         #endregion
         #region Method to Delete Product from Database
-        public bool Delete(productsBLL p)
+        public bool Delete(ProductsBLL p)
         {
             //Create Boolean Variable and Set its default value to false
             bool isSuccess = false;
@@ -248,10 +248,10 @@ namespace AnyStore.DAL
         }
         #endregion
         #region METHOD TO SEARCH PRODUCT IN TRANSACTION MODULE
-        public productsBLL GetProductsForTransaction(string keyword)
+        public ProductsBLL GetProductsForTransaction(string keyword)
         {
             //Create an object of productsBLL and return it
-            productsBLL p = new productsBLL();
+            ProductsBLL p = new ProductsBLL();
             //SqlConnection
             SqlConnection conn = new SqlConnection(myconnstrng);
             //Datatable to store data temporarily
@@ -292,10 +292,10 @@ namespace AnyStore.DAL
         }
         #endregion
         #region METHOD TO GET PRODUCT ID BASED ON PRODUCT NAME
-        public productsBLL GetProductIDFromName(string ProductName)
+        public ProductsBLL GetProductIDFromName(string ProductName)
         {
             //First Create an Object of DeaCust BLL and REturn it
-            productsBLL p = new productsBLL();
+            ProductsBLL p = new ProductsBLL();
 
             //SQL Conection here
             SqlConnection conn = new SqlConnection(myconnstrng);

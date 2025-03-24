@@ -40,7 +40,7 @@ namespace AnyStore.UI
             dc.added_date = DateTime.Now;
             //Getting the ID to Logged in user and passign its value in dealer or cutomer module
             string loggedUsr = frmLogin.loggedIn;
-            userBLL usr = uDal.GetIDFromUsername(loggedUsr);
+            UserBLL usr = uDal.GetIDFromUsername(loggedUsr);
             dc.added_by = usr.id;
 
             //Creating boolean variable to check whether the dealer or cutomer is added or not
@@ -102,7 +102,7 @@ namespace AnyStore.UI
             dc.added_date = DateTime.Now;
             //Getting the ID to Logged in user and passign its value in dealer or cutomer module
             string loggedUsr = frmLogin.loggedIn;
-            userBLL usr = uDal.GetIDFromUsername(loggedUsr);
+            UserBLL usr = uDal.GetIDFromUsername(loggedUsr);
             dc.added_by = usr.id;
 
             //create boolean variable to check whether the dealer or customer is updated or not

@@ -50,7 +50,7 @@ namespace AnyStore.DAL
         }
         #endregion
         #region Insert Data in Database
-        public bool Insert(userBLL u)
+        public bool Insert(UserBLL u)
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(myconnstrng);
@@ -100,7 +100,7 @@ namespace AnyStore.DAL
         }
         #endregion
         #region Update data in Database
-        public bool Update(userBLL u)
+        public bool Update(UserBLL u)
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(myconnstrng);
@@ -150,7 +150,7 @@ namespace AnyStore.DAL
         }
         #endregion
         #region Delete Data from DAtabase
-        public bool Delete(userBLL u)
+        public bool Delete(UserBLL u)
         {
             bool isSuccess = false;
             SqlConnection conn = new SqlConnection(myconnstrng);
@@ -221,9 +221,9 @@ namespace AnyStore.DAL
         }
         #endregion
         #region Getting User ID from Username
-        public userBLL GetIDFromUsername (string username)
+        public UserBLL GetIDFromUsername (string username)
         {
-            userBLL u = new userBLL();
+            UserBLL u = new UserBLL();
             SqlConnection conn = new SqlConnection(myconnstrng);
             DataTable dt = new DataTable();
 

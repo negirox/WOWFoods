@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AnyStore.BLL
 {
-    class categoriesBLL
+    public class CategoriesBLL
     {
         public int id { get; set; }
         public string title { get; set; }

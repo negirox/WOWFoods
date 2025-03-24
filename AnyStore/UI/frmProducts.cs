@@ -25,8 +25,8 @@ namespace AnyStore.UI
             this.Hide();
         }
 
-        categoriesDAL cdal = new categoriesDAL();
-        productsBLL p = new productsBLL();
+        CategoriesDAL cdal = new CategoriesDAL();
+        ProductsBLL p = new ProductsBLL();
         productsDAL pdal = new productsDAL();
         userDAL udal = new userDAL();
         private void frmProducts_Load(object sender, EventArgs e)
@@ -55,7 +55,7 @@ namespace AnyStore.UI
             p.added_date = DateTime.Now;
             //Getting username of logged in user
             String loggedUsr = frmLogin.loggedIn;
-            userBLL usr = udal.GetIDFromUsername(loggedUsr);
+            UserBLL usr = udal.GetIDFromUsername(loggedUsr);
 
             p.added_by = usr.id;
 
@@ -111,7 +111,7 @@ namespace AnyStore.UI
             p.added_date = DateTime.Now;
             //Getting Username of logged in user for added by
             String loggedUsr = frmLogin.loggedIn;
-            userBLL usr = udal.GetIDFromUsername(loggedUsr);
+            UserBLL usr = udal.GetIDFromUsername(loggedUsr);
 
             p.added_by = usr.id;
 

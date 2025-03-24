@@ -19,7 +19,7 @@ namespace AnyStore.UI
             InitializeComponent();
         }
 
-        userBLL u = new userBLL();
+        UserBLL u = new UserBLL();
         userDAL dal = new userDAL();
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -36,6 +36,7 @@ namespace AnyStore.UI
             u.last_name = txtLastName.Text;
             u.email = txtEmail.Text;
             u.username = txtUsername.Text;
+
             u.password = txtPassword.Text;
             u.contact = txtContact.Text;
             u.address = txtAddress.Text;
@@ -45,7 +46,7 @@ namespace AnyStore.UI
 
             //Getting Username of the logged in user
             string loggedUser = frmLogin.loggedIn;
-            userBLL usr = dal.GetIDFromUsername(loggedUser);
+            UserBLL usr = dal.GetIDFromUsername(loggedUser);
 
             u.added_by = usr.id;
 
