@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using Store.Models.BLL;
+using Store.Repository.Logging;
 
 namespace Store.Repository.Repository
 {

@@ -48,16 +48,18 @@
             this.panel1.Controls.Add(this.lblTop);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(844, 33);
+            this.panel1.Size = new System.Drawing.Size(1125, 41);
             this.panel1.TabIndex = 2;
             // 
             // pictureBoxClose
             // 
             this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(802, 0);
+            this.pictureBoxClose.Location = new System.Drawing.Point(1069, 0);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(31, 30);
+            this.pictureBoxClose.Size = new System.Drawing.Size(41, 37);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxClose.TabIndex = 1;
             this.pictureBoxClose.TabStop = false;
@@ -67,27 +69,32 @@
             // 
             this.lblTop.AutoSize = true;
             this.lblTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop.Location = new System.Drawing.Point(369, 7);
+            this.lblTop.Location = new System.Drawing.Point(492, 9);
+            this.lblTop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTop.Name = "lblTop";
-            this.lblTop.Size = new System.Drawing.Size(124, 21);
+            this.lblTop.Size = new System.Drawing.Size(154, 28);
             this.lblTop.TabIndex = 0;
             this.lblTop.Text = "TRANSACTIONS";
             // 
             // dgvTransactions
             // 
+            this.dgvTransactions.BackgroundColor = System.Drawing.Color.MediumPurple;
             this.dgvTransactions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvTransactions.Location = new System.Drawing.Point(13, 110);
+            this.dgvTransactions.Location = new System.Drawing.Point(17, 135);
+            this.dgvTransactions.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvTransactions.Name = "dgvTransactions";
-            this.dgvTransactions.Size = new System.Drawing.Size(819, 339);
+            this.dgvTransactions.RowHeadersWidth = 51;
+            this.dgvTransactions.Size = new System.Drawing.Size(1092, 417);
             this.dgvTransactions.TabIndex = 3;
             // 
             // lblTransactionType
             // 
             this.lblTransactionType.AutoSize = true;
             this.lblTransactionType.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTransactionType.Location = new System.Drawing.Point(12, 70);
+            this.lblTransactionType.Location = new System.Drawing.Point(16, 86);
+            this.lblTransactionType.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTransactionType.Name = "lblTransactionType";
-            this.lblTransactionType.Size = new System.Drawing.Size(107, 17);
+            this.lblTransactionType.Size = new System.Drawing.Size(137, 23);
             this.lblTransactionType.TabIndex = 4;
             this.lblTransactionType.Text = "Transaction Type";
             // 
@@ -98,35 +105,39 @@
             this.cmbTransactionType.Items.AddRange(new object[] {
             "Purchase",
             "Sales"});
-            this.cmbTransactionType.Location = new System.Drawing.Point(140, 70);
+            this.cmbTransactionType.Location = new System.Drawing.Point(187, 86);
+            this.cmbTransactionType.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cmbTransactionType.Name = "cmbTransactionType";
-            this.cmbTransactionType.Size = new System.Drawing.Size(309, 25);
+            this.cmbTransactionType.Size = new System.Drawing.Size(411, 29);
             this.cmbTransactionType.TabIndex = 5;
             this.cmbTransactionType.SelectedIndexChanged += new System.EventHandler(this.cmbTransactionType_SelectedIndexChanged);
             // 
             // btnAll
             // 
+            this.btnAll.BackColor = System.Drawing.Color.Salmon;
             this.btnAll.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAll.Location = new System.Drawing.Point(480, 66);
+            this.btnAll.Location = new System.Drawing.Point(640, 81);
+            this.btnAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAll.Name = "btnAll";
-            this.btnAll.Size = new System.Drawing.Size(173, 33);
+            this.btnAll.Size = new System.Drawing.Size(197, 34);
             this.btnAll.TabIndex = 6;
             this.btnAll.Text = "Show All";
-            this.btnAll.UseVisualStyleBackColor = true;
+            this.btnAll.UseVisualStyleBackColor = false;
             this.btnAll.Click += new System.EventHandler(this.btnAll_Click);
             // 
             // frmTransactions
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(844, 461);
+            this.ClientSize = new System.Drawing.Size(1125, 567);
             this.Controls.Add(this.btnAll);
             this.Controls.Add(this.cmbTransactionType);
             this.Controls.Add(this.lblTransactionType);
             this.Controls.Add(this.dgvTransactions);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmTransactions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Transactions";
