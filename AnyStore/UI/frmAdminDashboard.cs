@@ -65,5 +65,11 @@ namespace AnyStore
             frmInventory inventory = new frmInventory();
             inventory.Show();
         }
+
+        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmChart chart = new frmChart();
+            chart.Show();
+        }
     }
 }

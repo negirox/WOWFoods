@@ -43,5 +43,18 @@ namespace Store.Repository.Repository
         public const string SearchUsers = "SELECT * FROM tbl_users WHERE id LIKE @keywords OR first_name LIKE @keywords OR last_name LIKE @keywords OR username LIKE @keywords";
         public const string GetUserIDFromUsername = "SELECT id FROM tbl_users WHERE username=@username";
 
+        public const string GetTransactionSummary = @"SELECT 
+            CAST(transaction_date AS DATE) AS Date,
+            SUM(grandTotal) AS TotalAmount,
+            SUM(tax) AS TotalTax,
+            SUM(discount) AS TotalDiscount
+        FROM 
+            [WowFoods].[dbo].[tbl_transactions]
+        WHERE 
+            transaction_date BETWEEN @startDate AND @endDate
+        GROUP BY 
+            CAST(transaction_date AS DATE)
+        ORDER BY 
+            Date;";
     }
 }
