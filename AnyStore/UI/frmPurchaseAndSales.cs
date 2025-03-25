@@ -1,12 +1,13 @@
-﻿using AnyStore.BLL;
-using AnyStore.DAL;
-using DGVPrinterHelper;
+﻿using DGVPrinterHelper;
+using Store.Models.BLL;
 using Store.Repository.Repository;
 using System;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Transactions;
 using System.Windows.Forms;
+using AnyStore.Helpers;
 
 namespace AnyStore.UI
 {
@@ -14,9 +15,9 @@ namespace AnyStore.UI
     {
         DeaCustDAL dcDAL = new DeaCustDAL();
         productsDAL pDAL = new productsDAL();
-        userDAL uDAL = new userDAL();
-        transactionDAL tDAL = new transactionDAL();
-        transactionDetailDAL tdDAL = new transactionDetailDAL();
+        UserDAL uDAL = new UserDAL();
+        TransactionDAL tDAL = new TransactionDAL();
+        TransactionDetailDAL tdDAL = new TransactionDetailDAL();
 
         DataTable transactionDT = new DataTable();
         FormHelper formHelper = new FormHelper();
@@ -24,6 +25,7 @@ namespace AnyStore.UI
         {
             InitializeComponent();
             formHelper.FormateDataGridView(dgvAddedProducts);
+            this.WindowState = FormWindowState.Normal;
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
@@ -39,16 +41,17 @@ namespace AnyStore.UI
             lblTop.Text = type;
 
             //Specify Columns for our TransactionDataTable
-            transactionDT.Columns.Add("Product Name");
-            transactionDT.Columns.Add("Rate");
-            transactionDT.Columns.Add("Quantity");
-            transactionDT.Columns.Add("Total");
+            transactionDT.Columns.Add("Product Name", typeof(string));
+            transactionDT.Columns.Add("Rate", typeof(decimal));
+            transactionDT.Columns.Add("Quantity", typeof(decimal));
+            transactionDT.Columns.Add("Total", typeof(decimal));
 
 
             // Populate ComboBoxes
             LoadDealerCustomerComboBox();
             LoadProductComboBox();
         }
+
         private void LoadDealerCustomerComboBox()
         {
             DataTable dt = dcDAL.Select();
@@ -74,7 +77,7 @@ namespace AnyStore.UI
             //Get the keyword fro the text box
             string keyword = txtSearch.Text;
 
-            if(keyword=="")
+            if (keyword == "")
             {
                 //Clear all the textboxes
                 txtName.Text = "";
@@ -100,7 +103,7 @@ namespace AnyStore.UI
             string keyword = txtSearchProduct.Text;
 
             //Check if we have value to txtSearchProduct or not
-            if(keyword=="")
+            if (keyword == "")
             {
                 txtProductName.Text = "";
                 txtInventory.Text = "";
@@ -114,26 +117,35 @@ namespace AnyStore.UI
 
             //Set the values on textboxes based on p object
             txtProductName.Text = p.name;
-            txtInventory.Text = p.qty.ToString();
-            txtRate.Text = p.rate.ToString();
+            txtInventory.Text = p.qty.ToString(CultureInfo.InvariantCulture);
+            txtRate.Text = p.rate.ToString(CultureInfo.InvariantCulture);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            // Validate inputs
+            if (!ValidationHelper.IsNotEmpty(txtProductName.Text) ||
+                !ValidationHelper.IsValidDecimal(txtRate.Text) ||
+                !ValidationHelper.IsValidDecimal(TxtQty.Text))
+            {
+                MessageBox.Show("Please enter valid product details.");
+                return;
+            }
+
             //Get Product Name, Rate and Qty customer wants to buy
             string productName = txtProductName.Text;
-            decimal Rate = decimal.Parse(txtRate.Text);
-            decimal Qty = decimal.Parse(TxtQty.Text);
+            decimal Rate = decimal.Parse(txtRate.Text, CultureInfo.InvariantCulture);
+            decimal Qty = decimal.Parse(TxtQty.Text, CultureInfo.InvariantCulture);
 
             decimal Total = Rate * Qty; //Total=RatexQty
 
             //Display the Subtotal in textbox
             //Get the subtotal value from textbox
-            decimal subTotal = decimal.Parse(txtSubTotal.Text);
+            decimal subTotal = decimal.Parse(txtSubTotal.Text, CultureInfo.InvariantCulture);
             subTotal = subTotal + Total;
 
             //Check whether the product is selected or not
-            if(productName=="")
+            if (productName == "")
             {
                 //Display error MEssage
                 MessageBox.Show("Select the product first. Try Again.");
@@ -141,12 +153,12 @@ namespace AnyStore.UI
             else
             {
                 //Add product to the dAta Grid View
-                transactionDT.Rows.Add(productName,Rate,Qty,Total);
+                transactionDT.Rows.Add(productName, Rate.ToString(CultureInfo.InvariantCulture), Qty.ToString(CultureInfo.InvariantCulture), Total.ToString(CultureInfo.InvariantCulture));
 
                 //Show in DAta Grid View
                 dgvAddedProducts.DataSource = transactionDT;
                 //Display the Subtotal in textbox
-                txtSubTotal.Text = subTotal.ToString();
+                txtSubTotal.Text = subTotal.ToString(CultureInfo.InvariantCulture);
 
                 //Clear the Textboxes
                 txtSearchProduct.Text = "";
@@ -159,10 +171,17 @@ namespace AnyStore.UI
 
         private void txtDiscount_TextChanged(object sender, EventArgs e)
         {
+            // Validate input
+            if (!ValidationHelper.IsValidDecimal(txtDiscount.Text))
+            {
+                MessageBox.Show("Please enter a valid discount.");
+                return;
+            }
+
             //Get the value fro discount textbox
             string value = txtDiscount.Text;
 
-            if(value=="")
+            if (value == "")
             {
                 //Display Error Message
                 MessageBox.Show("Please Add Discount First");
@@ -170,23 +189,30 @@ namespace AnyStore.UI
             else
             {
                 //Get the discount in decimal value
-                decimal subTotal = decimal.Parse(txtSubTotal.Text);
-                decimal discount = decimal.Parse(txtDiscount.Text);
+                decimal subTotal = decimal.Parse(txtSubTotal.Text, CultureInfo.InvariantCulture);
+                decimal discount = decimal.Parse(txtDiscount.Text, CultureInfo.InvariantCulture);
 
                 //Calculate the grandtotal based on discount
                 decimal grandTotal = ((100 - discount) / 100) * subTotal;
 
                 //Display the GrandTotla in TextBox
-                txtGrandTotal.Text = grandTotal.ToString();
+                txtGrandTotal.Text = grandTotal.ToString(CultureInfo.InvariantCulture);
             }
-            
+
         }
 
         private void txtVat_TextChanged(object sender, EventArgs e)
         {
+            // Validate input
+            if (!ValidationHelper.IsValidDecimal(txtVat.Text))
+            {
+                MessageBox.Show("Please enter a valid VAT.");
+                return;
+            }
+
             //Check if the grandTotal has value or not if it has not value then calculate the discount first
             string check = txtGrandTotal.Text;
-            if(check=="")
+            if (check == "")
             {
                 //Deisplay the error message to calcuate discount
                 MessageBox.Show("Calculate the discount and set the Grand Total First.");
@@ -195,29 +221,46 @@ namespace AnyStore.UI
             {
                 //Calculate VAT
                 //Getting the VAT Percent first
-                decimal previousGT = decimal.Parse(txtGrandTotal.Text);
-                decimal vat = decimal.Parse(txtVat.Text);
-                decimal grandTotalWithVAT=((100+vat)/100)*previousGT;
+                decimal previousGT = decimal.Parse(txtGrandTotal.Text, CultureInfo.InvariantCulture);
+                decimal vat = decimal.Parse(txtVat.Text, CultureInfo.InvariantCulture);
+                decimal grandTotalWithVAT = ((100 + vat) / 100) * previousGT;
 
                 //Displaying new grand total with vat
-                txtGrandTotal.Text = grandTotalWithVAT.ToString();
+                txtGrandTotal.Text = grandTotalWithVAT.ToString(CultureInfo.InvariantCulture);
             }
         }
 
         private void txtPaidAmount_TextChanged(object sender, EventArgs e)
         {
+            // Validate input
+            if (!ValidationHelper.IsValidDecimal(txtPaidAmount.Text))
+            {
+                MessageBox.Show("Please enter a valid paid amount.");
+                return;
+            }
+
             //Get the paid amount and grand total
-            decimal grandTotal = decimal.Parse(txtGrandTotal.Text);
-            decimal paidAmount = decimal.Parse(txtPaidAmount.Text);
+            decimal grandTotal = decimal.Parse(txtGrandTotal.Text, CultureInfo.InvariantCulture);
+            decimal paidAmount = decimal.Parse(txtPaidAmount.Text, CultureInfo.InvariantCulture);
 
             decimal returnAmount = paidAmount - grandTotal;
 
             //Display the return amount as well
-            txtReturnAmount.Text = returnAmount.ToString();
+            txtReturnAmount.Text = returnAmount.ToString(CultureInfo.InvariantCulture);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            // Validate inputs
+            if (!ValidationHelper.IsNotEmpty(txtName.Text) ||
+                !ValidationHelper.IsValidDecimal(txtGrandTotal.Text) ||
+                !ValidationHelper.IsValidDecimal(txtVat.Text) ||
+                !ValidationHelper.IsValidDecimal(txtDiscount.Text))
+            {
+                MessageBox.Show("Please enter valid transaction details.");
+                return;
+            }
+
             //Get the Values from PurchaseSales Form First
             TransactionsBLL transaction = new TransactionsBLL();
 
@@ -229,10 +272,10 @@ namespace AnyStore.UI
             DeaCustBLL dc = dcDAL.GetDeaCustIDFromName(deaCustName);
 
             transaction.dea_cust_id = dc.id;
-            transaction.grandTotal = Math.Round(decimal.Parse(txtGrandTotal.Text),2);
+            transaction.grandTotal = Math.Round(decimal.Parse(txtGrandTotal.Text, CultureInfo.InvariantCulture), 2);
             transaction.transaction_date = DateTime.Now;
-            transaction.tax = decimal.Parse(txtVat.Text);
-            transaction.discount = decimal.Parse(txtDiscount.Text);
+            transaction.tax = decimal.Parse(txtVat.Text, CultureInfo.InvariantCulture);
+            transaction.discount = decimal.Parse(txtDiscount.Text, CultureInfo.InvariantCulture);
 
             //Get the Username of Logged in user
             string username = frmLogin.loggedIn;
@@ -252,7 +295,7 @@ namespace AnyStore.UI
                 bool w = tDAL.Insert_Transaction(transaction, out transactionID);
 
                 //Use for loop to insert Transaction Details
-                for(int i=0;i<transactionDT.Rows.Count;i++)
+                for (int i = 0; i < transactionDT.Rows.Count; i++)
                 {
                     //Get all the details of the product
                     TransactionDetailBLL transactionDetail = new TransactionDetailBLL();
@@ -261,9 +304,9 @@ namespace AnyStore.UI
                     ProductsBLL p = pDAL.GetProductIDFromName(ProductName);
 
                     transactionDetail.product_id = p.id;
-                    transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][1].ToString());
-                    transactionDetail.qty = decimal.Parse(transactionDT.Rows[i][2].ToString());
-                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][3].ToString()),2);
+                    transactionDetail.rate = decimal.Parse(transactionDT.Rows[i][1].ToString(), CultureInfo.InvariantCulture);
+                    transactionDetail.qty = decimal.Parse(transactionDT.Rows[i][2].ToString(), CultureInfo.InvariantCulture);
+                    transactionDetail.total = Math.Round(decimal.Parse(transactionDT.Rows[i][3].ToString(), CultureInfo.InvariantCulture), 2);
                     transactionDetail.dea_cust_id = dc.id;
                     transactionDetail.added_date = DateTime.Now;
                     transactionDetail.added_by = u.id;
@@ -272,13 +315,13 @@ namespace AnyStore.UI
                     string transactionType = lblTop.Text;
 
                     //Lets check whether we are on Purchase or Sales
-                    bool x=false;
-                    if(transactionType=="Purchase")
+                    bool x = false;
+                    if (transactionType == "Purchase")
                     {
                         //Increase the Product
                         x = pDAL.IncreaseProduct(transactionDetail.product_id, transactionDetail.qty);
                     }
-                    else if(transactionType=="Sales")
+                    else if (transactionType == "Sales")
                     {
                         //Decrease the Product Quntiyt
                         x = pDAL.DecreaseProduct(transactionDetail.product_id, transactionDetail.qty);
@@ -288,7 +331,7 @@ namespace AnyStore.UI
                     bool y = tdDAL.InsertTransactionDetail(transactionDetail);
                     success = w && x && y;
                 }
-                
+
                 if (success == true)
                 {
                     //Transaction Complete
@@ -367,9 +410,10 @@ namespace AnyStore.UI
 
             //Set the values on textboxes based on p object
             txtProductName.Text = p.name;
-            txtInventory.Text = p.qty.ToString();
-            txtRate.Text = p.rate.ToString();
+            txtInventory.Text = p.qty.ToString(CultureInfo.InvariantCulture);
+            txtRate.Text = p.rate.ToString(CultureInfo.InvariantCulture);
         }
+
         private void txtName_TextChanged(object sender, EventArgs e)
         {
 

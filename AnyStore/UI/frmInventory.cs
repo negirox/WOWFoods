@@ -1,4 +1,5 @@
 ﻿using AnyStore.DAL;
+using Store.Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using CategoriesDAL = Store.Repository.Repository.CategoriesDAL;
 
 namespace AnyStore.UI
 {
@@ -18,7 +20,7 @@ namespace AnyStore.UI
             InitializeComponent();
         }
         CategoriesDAL cdal = new CategoriesDAL();
-        productsDAL pdal = new productsDAL();
+        ProductsDAL pdal = new ProductsDAL();
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             //Addd Functionality to Close this form

@@ -1,13 +1,7 @@
-﻿using AnyStore.BLL;
-using AnyStore.DAL;
+﻿using Store.Models.BLL;
+using Store.Repository.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AnyStore.UI
@@ -27,8 +21,8 @@ namespace AnyStore.UI
 
         CategoriesDAL cdal = new CategoriesDAL();
         ProductsBLL p = new ProductsBLL();
-        productsDAL pdal = new productsDAL();
-        userDAL udal = new userDAL();
+        ProductsDAL pdal = new ProductsDAL();
+        UserDAL udal = new UserDAL();
         private void frmProducts_Load(object sender, EventArgs e)
         {
             //Creating DAta Table to hold the categories from Database
