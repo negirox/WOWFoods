@@ -50,11 +50,13 @@
     <Compile Include="Repository\ICategoriesDAL.cs" />
     <Compile Include="Repository\IDeaCustDAL.cs" />
     <Compile Include="Repository\IProductsDAL.cs" />
+    <Compile Include="Repository\IReportRepository.cs" />
     <Compile Include="Repository\ITransactionDAL.cs" />
     <Compile Include="Repository\ITransactionDetailDAL.cs" />
     <Compile Include="Repository\IUserDAL.cs" />
     <Compile Include="Repository\LoginDAL.cs" />
     <Compile Include="Repository\ProductsDAL.cs" />
+    <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="Repository\SqlHelper.cs" />
     <Compile Include="Repository\SqlQueries.cs" />
     <Compile Include="Repository\TransactionDAL.cs" />
