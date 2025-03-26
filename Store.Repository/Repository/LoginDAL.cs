@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Store.Repository.Repository
 {
-    public class LoginDAL
+    public class LoginDAL : ILoginDAL
     {
         public bool LoginCheck(LoginBLL login)
         {

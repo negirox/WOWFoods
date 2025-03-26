@@ -6,7 +6,12 @@ namespace Store.Repository.Repository
 {
     public static class SqlHelper
     {
-        private static readonly string connectionString = ConfigurationManager.ConnectionStrings["connstrng"].ConnectionString;
+        private static string connectionString;
+        static SqlHelper()
+        {
+            connectionString = ConfigurationManager.ConnectionStrings["connstrng"]?.ConnectionString; 
+        }
+        
 
         public static SqlConnection GetConnection()
         {
