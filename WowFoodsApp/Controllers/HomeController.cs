@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using WowFoodsApp.Models;
-
+using WowFoodsViewModels.Models;
 namespace WowFoodsApp.Controllers
 {
     public class HomeController : Controller
