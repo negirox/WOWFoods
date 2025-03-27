@@ -5,14 +5,9 @@ using WowFoods.Models;
 
 namespace WowFoodsApp.Repository
 {
-    public class LoginRepository : ILoginRepository
+    public class LoginRepository(AppDbContext context) : ILoginRepository
     {
-        private readonly AppDbContext _context;
-
-        public LoginRepository(AppDbContext context)
-        {
-            _context = context;
-        }
+        private readonly AppDbContext _context = context;
 
         public async Task<bool> LoginCheck(User login)
         {

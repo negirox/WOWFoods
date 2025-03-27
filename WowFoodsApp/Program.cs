@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using WowFoodsApp;
 using WowFoodsApp.Repository;
 public class Program
 {
@@ -17,7 +18,7 @@ public class Program
 
                     services.AddDbContext<AppDbContext>(options =>
                         options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
-                    services.AddTransient<ILoginRepository, LoginRepository>();
+                    RegisterServicesToApp.RegisterServices(services);
                     services.AddRazorPages();
                 })
                 .Configure((context, app) =>
@@ -51,6 +52,8 @@ public class Program
                     });
                 });
             });
+
+   
 }
 
 
