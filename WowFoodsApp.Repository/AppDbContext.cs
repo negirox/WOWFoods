@@ -14,6 +14,10 @@ namespace WowFoodsApp.Repository
         public DbSet<UserInformation> UserInformations { get; set; }
 
         public DbSet<EmployeeStaff> EmployeeStaffs { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ConfigureRelationShipsofTable(modelBuilder);
@@ -21,11 +25,23 @@ namespace WowFoodsApp.Repository
             // Configure auto-incrementing primary keys
             ConfigureAutoIncrement(modelBuilder);
 
+            // Configure decimal properties
+            ConfigureDecimalProperties(modelBuilder);
+
             // Seed initial data
             SeedInitialDataToDefaultTables(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
+
+
+        private static void ConfigureDecimalProperties(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Product>()
+                .Property(p => p.Price)
+                .HasColumnType("decimal(18,2)");
+        }
+
 
         private static void SeedInitialDataToDefaultTables(ModelBuilder modelBuilder)
         {
@@ -42,6 +58,18 @@ namespace WowFoodsApp.Repository
             modelBuilder.Entity<EmployeeStaff>().HasData(
                 new EmployeeStaff { Id = 1, Salary = 6000, DateOfJoining = new DateTime(2020, 1, 1), IsActive = true, UserId = 1 },
                 new EmployeeStaff { Id = 2, Salary = 8000, DateOfJoining = new DateTime(2021, 1, 1), IsActive = true, UserId = 2 }
+            );
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category { CategoryId = 1, Name = "Indian Street Food" },
+                new Category { CategoryId = 2, Name = "Chinese Street Food" }
+            );
+
+            modelBuilder.Entity<Product>().HasData(
+                new Product { ProductId = 1, Name = "Pani Puri", Description = "Crispy puris filled with spicy water", Price = 1.5M, CategoryId = 1, AddedBy = 1 },
+                new Product { ProductId = 2, Name = "Samosa", Description = "Fried pastry with savory filling", Price = 1.0M, CategoryId = 1, AddedBy = 1 },
+                new Product { ProductId = 3, Name = "Chow Mein", Description = "Stir-fried noodles with vegetables", Price = 5.0M, CategoryId = 2, AddedBy = 2 },
+                new Product { ProductId = 4, Name = "Spring Rolls", Description = "Crispy rolls with vegetable filling", Price = 3.0M, CategoryId = 2, AddedBy = 2 }
             );
         }
 
@@ -62,6 +90,16 @@ namespace WowFoodsApp.Repository
                 .WithOne(e => e.User)
                 .HasForeignKey<EmployeeStaff>(e => e.Id);
 
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.Category)
+                .WithMany(c => c.Products)
+                .HasForeignKey(p => p.CategoryId);
+
+            modelBuilder.Entity<Product>()
+                .HasOne(p => p.User)
+                .WithMany()
+                .HasForeignKey(p => p.AddedBy);
+
         }
 
         private static void ConfigureAutoIncrement(ModelBuilder modelBuilder)
@@ -75,12 +113,17 @@ namespace WowFoodsApp.Repository
                 .Property(ui => ui.Id)
                 .ValueGeneratedOnAdd();
 
-            //modelBuilder.Entity<EmployeeStaff>()
-            //.HasKey(e => e.Id);
-
             modelBuilder.Entity<EmployeeStaff>()
              .Property(ui => ui.Id)
              .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Product>()
+            .Property(p => p.ProductId)
+            .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Category>()
+                .Property(c => c.CategoryId)
+                .ValueGeneratedOnAdd();
         }
     }
 
