@@ -1,1 +1,57 @@
-﻿<h1>Hello from dashboard</h1>
+﻿@model WowFoodsApp.Models.DashBoardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="#">Dashboard</a>
+                <a class="nav-link" href="#">Sales</a>
+                <a class="nav-link" href="#">Reports</a>
+                <a class="nav-link" href="#">Settings</a>
+            </nav>
+        </div>
+        <div class="col-md-10">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Sales</h5>
+                            <p class="card-text">@Model.TotalSales.ToString("C")</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Total Profit</h5>
+                            <p class="card-text">@Model.TotalProfit.ToString("C")</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .nav-link {
+        cursor: pointer;
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                this.classList.toggle('active');
+                const subMenu = this.nextElementSibling;
+                if (subMenu) {
+                    subMenu.classList.toggle('collapse');
+                }
+            });
+        });
+    });
+</script>

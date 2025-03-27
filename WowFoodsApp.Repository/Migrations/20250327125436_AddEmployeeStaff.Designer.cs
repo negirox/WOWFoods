@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WowFoodsApp.Repository;
 
@@ -11,9 +12,11 @@ using WowFoodsApp.Repository;
 namespace WowFoodsApp.Repository.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250327125436_AddEmployeeStaff")]
+    partial class AddEmployeeStaff
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -24,7 +27,7 @@ namespace WowFoodsApp.Repository.Migrations
 
             modelBuilder.Entity("WowFoods.Models.EmployeeStaff", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("EmployeeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -37,30 +40,9 @@ namespace WowFoodsApp.Repository.Migrations
                     b.Property<double>("Salary")
                         .HasColumnType("float");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.HasKey("EmployeeId");
 
-                    b.HasKey("Id");
-
-                    b.ToTable("EmployeeStaffs");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DateOfJoining = new DateTime(2020, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Salary = 6000.0,
-                            UserId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DateOfJoining = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsActive = true,
-                            Salary = 8000.0,
-                            UserId = 2
-                        });
+                    b.ToTable("EmployeeStaff");
                 });
 
             modelBuilder.Entity("WowFoods.Models.User", b =>
@@ -156,7 +138,7 @@ namespace WowFoodsApp.Repository.Migrations
                 {
                     b.HasOne("WowFoods.Models.User", "User")
                         .WithOne("EmployeeStaff")
-                        .HasForeignKey("WowFoods.Models.EmployeeStaff", "Id")
+                        .HasForeignKey("WowFoods.Models.EmployeeStaff", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
