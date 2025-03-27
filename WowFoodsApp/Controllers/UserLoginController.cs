@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WowFoods.Models;
-using WowFoodsApp.Models;
+using WowFoodsViewModels.Models;
 using WowFoodsApp.Repository;
 
 namespace WowFoodsApp.Controllers

@@ -1,22 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WowFoodsApp.Models;
+using WowFoodsViewModels.Models;
+using WowFoods.Services;
 
 namespace WowFoodsApp.Controllers
 {
-    public class DashBoardController : Controller
+    public class DashBoardController(ISalesService salesService) : Controller
     {
-        private readonly ISalesRepository salesRepository;
+        private readonly ISalesService _salesService = salesService;
 
-        public DashBoardController(ISalesRepository salesRepository)
+        public async Task<IActionResult> DashBoardView()
         {
-            this.salesRepository = salesRepository;
-        }
-
-        public IActionResult DashBoardView()
-        {
-            DashBoardViewModel dashBoardViewModel = new DashBoardViewModel();
-            dashBoardViewModel.TotalSales = salesRepository.GetTotalSales();
-            dashBoardViewModel.TotalProfit = salesRepository.GetTotalProfit();
+            DashBoardViewModel dashBoardViewModel = new()
+            {
+                TotalSales = await _salesService.GetTotalSalesAsync(),
+                TotalProfit = await _salesService.GetTotalProfitAsync()
+            };
             return View(dashBoardViewModel);
         }
     }

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using WowFoodsApp.Models;
+using WowFoodsViewModels.Models;
 
 namespace WowFoodsApp.Controllers
 {

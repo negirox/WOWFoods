@@ -15,9 +15,9 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\WowFoods.Models\WowFoods.Models.csproj" />
-    <ProjectReference Include="..\WowFoodsApp.Repository\WowFoodsApp.Repository.csproj" />
+   <ItemGroup>
+    <ProjectReference Include="..\WowFoods.Services\WowFoods.Services.csproj" />
+    <ProjectReference Include="..\WowFoodsViewModels.Models\WowFoodsViewModels.Models.csproj" />
   </ItemGroup>
 
 </Project>

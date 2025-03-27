@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowFoodsApp", "WowFoodsApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowFoods.Services", "WowFoods.Services\WowFoods.Services.csproj", "{8A8147F7-C82E-495D-B95D-6C74FA08BE20}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowFoodsViewModels.Models", "WowFoodsViewModels.Models\WowFoodsViewModels.Models.csproj", "{39FF1747-81BC-4592-B143-49A29BBC4549}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{8A8147F7-C82E-495D-B95D-6C74FA08BE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A8147F7-C82E-495D-B95D-6C74FA08BE20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A8147F7-C82E-495D-B95D-6C74FA08BE20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{39FF1747-81BC-4592-B143-49A29BBC4549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39FF1747-81BC-4592-B143-49A29BBC4549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39FF1747-81BC-4592-B143-49A29BBC4549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39FF1747-81BC-4592-B143-49A29BBC4549}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

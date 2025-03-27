@@ -6,4 +6,10 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\WowFoods.Models\WowFoods.Models.csproj" />
+	  <ProjectReference Include="..\WowFoodsApp.Repository\WowFoodsApp.Repository.csproj" />
+	  <ProjectReference Include="..\WowFoodsViewModels.Models\WowFoodsViewModels.Models.csproj" />
+	</ItemGroup>
+
 </Project>
