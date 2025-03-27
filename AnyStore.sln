@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowFoodsApp.Repository", "W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowFoodsApp", "WowFoodsApp\WowFoodsApp.csproj", "{79A34FDA-AC9F-D779-8CC4-E8058A26D06D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WowFoods.Services", "WowFoods.Services\WowFoods.Services.csproj", "{8A8147F7-C82E-495D-B95D-6C74FA08BE20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{79A34FDA-AC9F-D779-8CC4-E8058A26D06D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79A34FDA-AC9F-D779-8CC4-E8058A26D06D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{79A34FDA-AC9F-D779-8CC4-E8058A26D06D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A8147F7-C82E-495D-B95D-6C74FA08BE20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A8147F7-C82E-495D-B95D-6C74FA08BE20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A8147F7-C82E-495D-B95D-6C74FA08BE20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A8147F7-C82E-495D-B95D-6C74FA08BE20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
