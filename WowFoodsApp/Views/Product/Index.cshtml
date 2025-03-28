@@ -1,0 +1,148 @@
+﻿@model IEnumerable<WowFoodsViewModels.Models.ProductViewModel>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Products</h1>
+
+<button id="createProductBtn" class="btn btn-primary">Create New</button>
+
+<table id="productsTable" class="display">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>@item.Price</td>
+                <td>@item.CategoryName</td>
+                <td>
+                    <button class="btn btn-sm btn-warning editProductBtn" data-id="@item.ProductId">Edit</button>
+                    <button class="btn btn-sm btn-danger deleteProductBtn" data-id="@item.ProductId">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Create/Edit Modal -->
+<div class="modal fade" id="productModal" tabindex="-1" role="dialog" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="productModalLabel">Create/Edit Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="productForm">
+                    <input type="hidden" id="ProductId" name="ProductId" />
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" name="Name" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="Description">Description</label>
+                        <input type="text" class="form-control" id="Description" name="Description" />
+                    </div>
+                    <div class="form-group">
+                        <label for="Price">Price</label>
+                        <input type="number" class="form-control" id="Price" name="Price" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="CategoryId">Category</label>
+                        <select class="form-control" id="CategoryId" name="CategoryId" required>
+                            @foreach (var category in ViewBag.Categories)
+                            {
+                                <option value="@category.CategoryId">@category.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Product</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this product?</p>
+                <button id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $('#productsTable').DataTable();
+
+            $('#createProductBtn').click(function () {
+                $('#productForm')[0].reset();
+                $('#ProductId').val('');
+                $('#productModal').modal('show');
+            });
+
+            $('#productsTable').on('click', '.editProductBtn', function () {
+                var id = $(this).data('id');
+                $.get('/Product/GetProduct/' + id, function (data) {
+                    $('#ProductId').val(data.productId);
+                    $('#Name').val(data.name);
+                    $('#Description').val(data.description);
+                    $('#Price').val(data.price);
+                    $('#CategoryId').val(data.categoryId);
+                    $('#productModal').modal('show');
+                });
+            });
+
+            $('#productsTable').on('click', '.deleteProductBtn', function () {
+                var id = $(this).data('id');
+                $('#confirmDeleteBtn').data('id', id);
+                $('#deleteModal').modal('show');
+            });
+
+            $('#confirmDeleteBtn').click(function () {
+                var id = $(this).data('id');
+                $.post('/Product/Delete/' + id, function () {
+                    table.row($('button[data-id="' + id + '"]').parents('tr')).remove().draw();
+                    $('#deleteModal').modal('hide');
+                });
+            });
+
+            $('#productForm').submit(function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                var id = $('#ProductId').val();
+                var url = id ? '/Product/Edit/' + id : '/Product/Create';
+                $.post(url, formData, function () {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+}
+
+
+

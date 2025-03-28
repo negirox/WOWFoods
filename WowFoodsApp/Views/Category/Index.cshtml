@@ -1,0 +1,122 @@
+﻿@model IEnumerable<WowFoodsViewModels.Models.CategoryViewModel>
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+
+<button id="createCategoryBtn" class="btn btn-primary">Create New</button>
+
+<table id="categoriesTable" class="display">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>
+                    <button class="btn btn-sm btn-warning editCategoryBtn" data-id="@item.CategoryId">Edit</button>
+                    <button class="btn btn-sm btn-danger deleteCategoryBtn" data-id="@item.CategoryId">Delete</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Create/Edit Modal -->
+<div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="categoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoryModalLabel">Create/Edit Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="categoryForm">
+                    <input type="hidden" id="CategoryId" name="CategoryId" />
+                    <div class="form-group">
+                        <label for="Name">Name</label>
+                        <input type="text" class="form-control" id="Name" name="Name" required />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Delete Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to delete this category?</p>
+                <button id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            var table = $('#categoriesTable').DataTable();
+
+            $('#createCategoryBtn').click(function () {
+                $('#categoryForm')[0].reset();
+                $('#CategoryId').val('');
+                $('#categoryModal').modal('show');
+            });
+
+            $('#categoriesTable').on('click', '.editCategoryBtn', function () {
+                var id = $(this).data('id');
+                $.get('/Category/GetCategory/' + id, function (data) {
+                    $('#CategoryId').val(data.CategoryId);
+                    $('#Name').val(data.Name);
+                    $('#categoryModal').modal('show');
+                });
+            });
+
+            $('#categoriesTable').on('click', '.deleteCategoryBtn', function () {
+                var id = $(this).data('id');
+                $('#confirmDeleteBtn').data('id', id);
+                $('#deleteModal').modal('show');
+            });
+
+            $('#confirmDeleteBtn').click(function () {
+                var id = $(this).data('id');
+                $.post('/Category/Delete/' + id, function () {
+                    table.row($('button[data-id="' + id + '"]').parents('tr')).remove().draw();
+                    $('#deleteModal').modal('hide');
+                });
+            });
+
+            $('#categoryForm').submit(function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                var id = $('#CategoryId').val();
+                var url = id ? '/Category/Edit/' + id : '/Category/Create';
+                $.post(url, formData, function () {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+}
+
+
+
