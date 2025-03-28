@@ -1,7 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using WowFoods.Models;
 
 namespace WowFoodsApp.Repository
@@ -17,7 +14,7 @@ namespace WowFoodsApp.Repository
 
         public async Task<IEnumerable<Product>> GetAllProductsAsync()
         {
-            return await _context.Products
+            var products = await _context.Products
                 .Include(p => p.Category)
                 .Select(p => new Product
                 {
@@ -26,13 +23,15 @@ namespace WowFoodsApp.Repository
                     Description = p.Description,
                     Price = p.Price,
                     CategoryId = p.CategoryId,
-                    AddedBy = p.AddedBy
+                    AddedBy = p.AddedBy,
+                    Category = new Category() { Name = p.Category.Name, CategoryId = p.CategoryId } // Include CategoryName
                 }).ToListAsync();
+            return products;
         }
 
         public async Task<Product> GetProductByIdAsync(int id)
         {
-            return await _context.Products
+            Product? productRecord = await _context.Products
                 .Include(p => p.Category)
                 .Where(p => p.ProductId == id)
                 .Select(p => new Product
@@ -42,8 +41,10 @@ namespace WowFoodsApp.Repository
                     Description = p.Description,
                     Price = p.Price,
                     CategoryId = p.CategoryId,
-                    AddedBy = p.AddedBy
+                    AddedBy = p.AddedBy,
+                    Category = new Category() { Name = p.Category.Name, CategoryId = p.CategoryId } // Include CategoryName
                 }).FirstOrDefaultAsync();
+            return productRecord;
         }
 
         public async Task AddProductAsync(Product product)
@@ -84,3 +85,7 @@ namespace WowFoodsApp.Repository
         }
     }
 }
+
+
+
+
