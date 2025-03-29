@@ -37,12 +37,13 @@
             this.deealerAndCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblUser = new System.Windows.Forms.Label();
             this.lblLoggedInUser = new System.Windows.Forms.Label();
             this.lblAppFName = new System.Windows.Forms.Label();
             this.lblLName = new System.Windows.Forms.Label();
             this.lblSHead = new System.Windows.Forms.Label();
-            this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dailyTransactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlFooter.SuspendLayout();
             this.menuStripTop.SuspendLayout();
             this.SuspendLayout();
@@ -80,7 +81,8 @@
             this.deealerAndCustomerToolStripMenuItem,
             this.inventoryToolStripMenuItem,
             this.transactionToolStripMenuItem,
-            this.dashboardToolStripMenuItem});
+            this.dashboardToolStripMenuItem,
+            this.dailyTransactionsToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
             this.menuStripTop.Size = new System.Drawing.Size(1589, 28);
@@ -129,6 +131,13 @@
             this.transactionToolStripMenuItem.Text = "Transaction";
             this.transactionToolStripMenuItem.Click += new System.EventHandler(this.transactionToolStripMenuItem_Click);
             // 
+            // dashboardToolStripMenuItem
+            // 
+            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.dashboardToolStripMenuItem.Text = "Dashboard";
+            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
+            // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
@@ -154,22 +163,22 @@
             // lblAppFName
             // 
             this.lblAppFName.AutoSize = true;
-            this.lblAppFName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppFName.Location = new System.Drawing.Point(777, 327);
+            this.lblAppFName.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppFName.Location = new System.Drawing.Point(428, 207);
             this.lblAppFName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAppFName.Name = "lblAppFName";
-            this.lblAppFName.Size = new System.Drawing.Size(109, 46);
+            this.lblAppFName.Size = new System.Drawing.Size(136, 59);
             this.lblAppFName.TabIndex = 4;
             this.lblAppFName.Text = "WOW";
             // 
             // lblLName
             // 
             this.lblLName.AutoSize = true;
-            this.lblLName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLName.Location = new System.Drawing.Point(894, 327);
+            this.lblLName.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLName.Location = new System.Drawing.Point(564, 207);
             this.lblLName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLName.Name = "lblLName";
-            this.lblLName.Size = new System.Drawing.Size(134, 46);
+            this.lblLName.Size = new System.Drawing.Size(169, 59);
             this.lblLName.TabIndex = 5;
             this.lblLName.Text = "FOODS";
             // 
@@ -178,19 +187,19 @@
             this.lblSHead.AutoSize = true;
             this.lblSHead.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSHead.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.lblSHead.Location = new System.Drawing.Point(700, 373);
+            this.lblSHead.Location = new System.Drawing.Point(391, 292);
             this.lblSHead.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSHead.Name = "lblSHead";
             this.lblSHead.Size = new System.Drawing.Size(394, 32);
             this.lblSHead.TabIndex = 6;
             this.lblSHead.Text = "Billing and Inventory Management";
             // 
-            // dashboardToolStripMenuItem
+            // dailyTransactionsToolStripMenuItem
             // 
-            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
-            this.dashboardToolStripMenuItem.Text = "Dashboard";
-            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
+            this.dailyTransactionsToolStripMenuItem.Name = "dailyTransactionsToolStripMenuItem";
+            this.dailyTransactionsToolStripMenuItem.Size = new System.Drawing.Size(142, 24);
+            this.dailyTransactionsToolStripMenuItem.Text = "Daily Transactions";
+            this.dailyTransactionsToolStripMenuItem.Click += new System.EventHandler(this.dailyTransactionsToolStripMenuItem_Click);
             // 
             // frmAdminDashboard
             // 
@@ -238,6 +247,7 @@
         private System.Windows.Forms.ToolStripMenuItem deealerAndCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem transactionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dailyTransactionsToolStripMenuItem;
     }
 }
 

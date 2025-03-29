@@ -11,5 +11,7 @@ namespace Store.Repository.Repository
         DataTable Search(string keywords);
         DataTable Select();
         bool Update(UserBLL u);
+
+        bool UpdateUserSalary(int userId, decimal newSalary);
     }
 }

@@ -1,14 +1,8 @@
-﻿using AnyStore.BLL;
-using AnyStore.DAL;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Store.Models.BLL;
+using Store.Repository.Repository;
 
 namespace AnyStore.UI
 {
@@ -22,13 +16,13 @@ namespace AnyStore.UI
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             //Write the code to close this form
-            this.Hide();
+            this.Close();
         }
 
         DeaCustBLL dc = new DeaCustBLL();
         DeaCustDAL dcDal = new DeaCustDAL();
 
-        userDAL uDal = new userDAL();
+        UserDAL uDal = new UserDAL();
         private void btnAdd_Click(object sender, EventArgs e)
         {
             //Get the Values from Form

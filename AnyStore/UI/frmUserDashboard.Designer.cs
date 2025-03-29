@@ -54,35 +54,35 @@
             this.dealerAndCustomerToolStripMenuItem});
             this.menuStripTop.Location = new System.Drawing.Point(0, 0);
             this.menuStripTop.Name = "menuStripTop";
-            this.menuStripTop.Size = new System.Drawing.Size(1664, 30);
+            this.menuStripTop.Size = new System.Drawing.Size(1664, 28);
             this.menuStripTop.TabIndex = 0;
             this.menuStripTop.Text = "menuStrip1";
             // 
             // purchaseToolStripMenuItem
             // 
             this.purchaseToolStripMenuItem.Name = "purchaseToolStripMenuItem";
-            this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(81, 26);
+            this.purchaseToolStripMenuItem.Size = new System.Drawing.Size(81, 24);
             this.purchaseToolStripMenuItem.Text = "Purchase";
             this.purchaseToolStripMenuItem.Click += new System.EventHandler(this.purchaseToolStripMenuItem_Click);
             // 
             // salesFormsToolStripMenuItem
             // 
             this.salesFormsToolStripMenuItem.Name = "salesFormsToolStripMenuItem";
-            this.salesFormsToolStripMenuItem.Size = new System.Drawing.Size(57, 26);
+            this.salesFormsToolStripMenuItem.Size = new System.Drawing.Size(57, 24);
             this.salesFormsToolStripMenuItem.Text = "Sales";
             this.salesFormsToolStripMenuItem.Click += new System.EventHandler(this.salesFormsToolStripMenuItem_Click);
             // 
             // inventoryToolStripMenuItem
             // 
             this.inventoryToolStripMenuItem.Name = "inventoryToolStripMenuItem";
-            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(84, 26);
+            this.inventoryToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.inventoryToolStripMenuItem.Text = "Inventory";
             this.inventoryToolStripMenuItem.Click += new System.EventHandler(this.inventoryToolStripMenuItem_Click);
             // 
             // dealerAndCustomerToolStripMenuItem
             // 
             this.dealerAndCustomerToolStripMenuItem.Name = "dealerAndCustomerToolStripMenuItem";
-            this.dealerAndCustomerToolStripMenuItem.Size = new System.Drawing.Size(163, 26);
+            this.dealerAndCustomerToolStripMenuItem.Size = new System.Drawing.Size(163, 24);
             this.dealerAndCustomerToolStripMenuItem.Text = "Dealer and Customer";
             this.dealerAndCustomerToolStripMenuItem.Click += new System.EventHandler(this.dealerAndCustomerToolStripMenuItem_Click);
             // 
@@ -91,7 +91,7 @@
             this.lblSHead.AutoSize = true;
             this.lblSHead.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSHead.ForeColor = System.Drawing.Color.MediumSeaGreen;
-            this.lblSHead.Location = new System.Drawing.Point(729, 439);
+            this.lblSHead.Location = new System.Drawing.Point(575, 286);
             this.lblSHead.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSHead.Name = "lblSHead";
             this.lblSHead.Size = new System.Drawing.Size(394, 32);
@@ -101,22 +101,22 @@
             // lblLName
             // 
             this.lblLName.AutoSize = true;
-            this.lblLName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLName.Location = new System.Drawing.Point(904, 394);
+            this.lblLName.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLName.Location = new System.Drawing.Point(736, 209);
             this.lblLName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblLName.Name = "lblLName";
-            this.lblLName.Size = new System.Drawing.Size(134, 46);
+            this.lblLName.Size = new System.Drawing.Size(171, 60);
             this.lblLName.TabIndex = 10;
             this.lblLName.Text = "FOODS";
             // 
             // lblAppFName
             // 
             this.lblAppFName.AutoSize = true;
-            this.lblAppFName.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAppFName.Location = new System.Drawing.Point(797, 394);
+            this.lblAppFName.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppFName.Location = new System.Drawing.Point(609, 209);
             this.lblAppFName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAppFName.Name = "lblAppFName";
-            this.lblAppFName.Size = new System.Drawing.Size(109, 46);
+            this.lblAppFName.Size = new System.Drawing.Size(139, 60);
             this.lblAppFName.TabIndex = 9;
             this.lblAppFName.Text = "WOW";
             // 
@@ -148,7 +148,7 @@
             this.pnlFooter.Controls.Add(this.lblFooter);
             this.pnlFooter.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.pnlFooter.Location = new System.Drawing.Point(0, 566);
-            this.pnlFooter.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlFooter.Margin = new System.Windows.Forms.Padding(4);
             this.pnlFooter.Name = "pnlFooter";
             this.pnlFooter.Size = new System.Drawing.Size(1664, 42);
             this.pnlFooter.TabIndex = 12;
@@ -178,7 +178,7 @@
             this.Controls.Add(this.lblUser);
             this.Controls.Add(this.menuStripTop);
             this.MainMenuStrip = this.menuStripTop;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmUserDashboard";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "User Dashboard";

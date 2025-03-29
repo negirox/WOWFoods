@@ -70,6 +70,12 @@
     <Compile Include="Helpers\FormHelper.cs" />
     <Compile Include="Helpers\ValidationHelper.cs" />
     <Compile Include="Logging\Logger.cs" />
+    <Compile Include="UI\DailyTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\DailyTransaction.Designer.cs">
+      <DependentUpon>DailyTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="UI\frmAdminDashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,6 +144,9 @@
     <Compile Include="UI\frmUsers.Designer.cs">
       <DependentUpon>frmUsers.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="UI\DailyTransaction.resx">
+      <DependentUpon>DailyTransaction.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UI\frmAdminDashboard.resx">
       <DependentUpon>frmAdminDashboard.cs</DependentUpon>
     </EmbeddedResource>

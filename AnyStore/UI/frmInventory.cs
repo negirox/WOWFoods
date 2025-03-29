@@ -1,13 +1,6 @@
-﻿using AnyStore.DAL;
-using Store.Repository.Repository;
+﻿using Store.Repository.Repository;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CategoriesDAL = Store.Repository.Repository.CategoriesDAL;
 
@@ -15,16 +8,18 @@ namespace AnyStore.UI
 {
     public partial class frmInventory : Form
     {
+        private readonly CategoriesDAL cdal = new CategoriesDAL();
+        private readonly ProductsDAL pdal = new ProductsDAL();
+        private readonly FormHelper formHelper = new FormHelper();
         public frmInventory()
         {
             InitializeComponent();
+            formHelper.FormateDataGridView(dgvProducts);
         }
-        CategoriesDAL cdal = new CategoriesDAL();
-        ProductsDAL pdal = new ProductsDAL();
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             //Addd Functionality to Close this form
-            this.Hide();
+            this.Close();
         }
 
         private void frmInventory_Load(object sender, EventArgs e)

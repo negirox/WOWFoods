@@ -8,15 +8,17 @@ namespace AnyStore.UI
 {
     public partial class frmProducts : Form
     {
+        private readonly FormHelper formHelper = new FormHelper();
         public frmProducts()
         {
             InitializeComponent();
+            formHelper.FormateDataGridView(dgvProducts);
         }
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             //Add code to hide this form
-            this.Hide();
+            this.Close();
         }
 
         CategoriesDAL cdal = new CategoriesDAL();
