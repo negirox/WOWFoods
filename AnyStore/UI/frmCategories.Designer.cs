@@ -56,16 +56,18 @@
             this.panel1.Controls.Add(this.lblTop);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(846, 33);
+            this.panel1.Size = new System.Drawing.Size(1137, 41);
             this.panel1.TabIndex = 1;
             // 
             // pictureBoxClose
             // 
             this.pictureBoxClose.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxClose.Image")));
-            this.pictureBoxClose.Location = new System.Drawing.Point(802, 0);
+            this.pictureBoxClose.Location = new System.Drawing.Point(1069, 0);
+            this.pictureBoxClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBoxClose.Name = "pictureBoxClose";
-            this.pictureBoxClose.Size = new System.Drawing.Size(31, 30);
+            this.pictureBoxClose.Size = new System.Drawing.Size(41, 37);
             this.pictureBoxClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxClose.TabIndex = 1;
             this.pictureBoxClose.TabStop = false;
@@ -75,9 +77,10 @@
             // 
             this.lblTop.AutoSize = true;
             this.lblTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTop.Location = new System.Drawing.Point(398, 5);
+            this.lblTop.Location = new System.Drawing.Point(531, 6);
+            this.lblTop.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTop.Name = "lblTop";
-            this.lblTop.Size = new System.Drawing.Size(100, 21);
+            this.lblTop.Size = new System.Drawing.Size(123, 28);
             this.lblTop.TabIndex = 0;
             this.lblTop.Text = "CATEGORIES";
             // 
@@ -85,9 +88,10 @@
             // 
             this.lblCategoryID.AutoSize = true;
             this.lblCategoryID.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCategoryID.Location = new System.Drawing.Point(13, 62);
+            this.lblCategoryID.Location = new System.Drawing.Point(17, 76);
+            this.lblCategoryID.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCategoryID.Name = "lblCategoryID";
-            this.lblCategoryID.Size = new System.Drawing.Size(77, 17);
+            this.lblCategoryID.Size = new System.Drawing.Size(101, 23);
             this.lblCategoryID.TabIndex = 2;
             this.lblCategoryID.Text = "Category ID";
             // 
@@ -95,9 +99,10 @@
             // 
             this.lblTitle.AutoSize = true;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.Location = new System.Drawing.Point(12, 102);
+            this.lblTitle.Location = new System.Drawing.Point(16, 126);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(32, 17);
+            this.lblTitle.Size = new System.Drawing.Size(42, 23);
             this.lblTitle.TabIndex = 3;
             this.lblTitle.Text = "Title";
             // 
@@ -105,36 +110,40 @@
             // 
             this.lblDescription.AutoSize = true;
             this.lblDescription.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescription.Location = new System.Drawing.Point(12, 140);
+            this.lblDescription.Location = new System.Drawing.Point(16, 172);
+            this.lblDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDescription.Name = "lblDescription";
-            this.lblDescription.Size = new System.Drawing.Size(74, 17);
+            this.lblDescription.Size = new System.Drawing.Size(96, 23);
             this.lblDescription.TabIndex = 4;
             this.lblDescription.Text = "Description";
             // 
             // txtCategoryID
             // 
             this.txtCategoryID.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCategoryID.Location = new System.Drawing.Point(145, 62);
+            this.txtCategoryID.Location = new System.Drawing.Point(135, 77);
+            this.txtCategoryID.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtCategoryID.Name = "txtCategoryID";
             this.txtCategoryID.ReadOnly = true;
-            this.txtCategoryID.Size = new System.Drawing.Size(217, 25);
+            this.txtCategoryID.Size = new System.Drawing.Size(288, 29);
             this.txtCategoryID.TabIndex = 5;
             // 
             // txtTitle
             // 
             this.txtTitle.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTitle.Location = new System.Drawing.Point(145, 99);
+            this.txtTitle.Location = new System.Drawing.Point(135, 126);
+            this.txtTitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(217, 25);
+            this.txtTitle.Size = new System.Drawing.Size(288, 29);
             this.txtTitle.TabIndex = 6;
             // 
             // txtDescription
             // 
             this.txtDescription.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescription.Location = new System.Drawing.Point(145, 140);
+            this.txtDescription.Location = new System.Drawing.Point(135, 172);
+            this.txtDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(217, 122);
+            this.txtDescription.Size = new System.Drawing.Size(288, 149);
             this.txtDescription.TabIndex = 7;
             // 
             // btnADD
@@ -142,9 +151,10 @@
             this.btnADD.BackColor = System.Drawing.Color.ForestGreen;
             this.btnADD.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnADD.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnADD.Location = new System.Drawing.Point(232, 280);
+            this.btnADD.Location = new System.Drawing.Point(13, 369);
+            this.btnADD.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnADD.Name = "btnADD";
-            this.btnADD.Size = new System.Drawing.Size(130, 44);
+            this.btnADD.Size = new System.Drawing.Size(134, 54);
             this.btnADD.TabIndex = 8;
             this.btnADD.Text = "ADD";
             this.btnADD.UseVisualStyleBackColor = false;
@@ -155,9 +165,10 @@
             this.btnUpdate.BackColor = System.Drawing.Color.Chartreuse;
             this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdate.Location = new System.Drawing.Point(368, 280);
+            this.btnUpdate.Location = new System.Drawing.Point(171, 369);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(130, 44);
+            this.btnUpdate.Size = new System.Drawing.Size(137, 54);
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.Text = "UPDATE";
             this.btnUpdate.UseVisualStyleBackColor = false;
@@ -169,9 +180,10 @@
             this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(504, 280);
+            this.btnDelete.Location = new System.Drawing.Point(330, 369);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(130, 44);
+            this.btnDelete.Size = new System.Drawing.Size(130, 54);
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "DELETE";
             this.btnDelete.UseVisualStyleBackColor = false;
@@ -180,9 +192,11 @@
             // dgvCategories
             // 
             this.dgvCategories.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCategories.Location = new System.Drawing.Point(422, 99);
+            this.dgvCategories.Location = new System.Drawing.Point(507, 122);
+            this.dgvCategories.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvCategories.Name = "dgvCategories";
-            this.dgvCategories.Size = new System.Drawing.Size(411, 163);
+            this.dgvCategories.RowHeadersWidth = 51;
+            this.dgvCategories.Size = new System.Drawing.Size(603, 532);
             this.dgvCategories.TabIndex = 11;
             this.dgvCategories.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvCategories_RowHeaderMouseClick);
             // 
@@ -190,27 +204,29 @@
             // 
             this.lblSearch.AutoSize = true;
             this.lblSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSearch.Location = new System.Drawing.Point(419, 65);
+            this.lblSearch.Location = new System.Drawing.Point(503, 80);
+            this.lblSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(41, 17);
+            this.lblSearch.Size = new System.Drawing.Size(135, 23);
             this.lblSearch.TabIndex = 12;
-            this.lblSearch.Text = "Searh";
+            this.lblSearch.Text = "Search Category";
             // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSearch.Location = new System.Drawing.Point(467, 65);
+            this.txtSearch.Location = new System.Drawing.Point(646, 80);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(366, 25);
+            this.txtSearch.Size = new System.Drawing.Size(464, 29);
             this.txtSearch.TabIndex = 13;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // frmCategories
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(846, 350);
+            this.ClientSize = new System.Drawing.Size(1137, 680);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.dgvCategories);
@@ -225,6 +241,7 @@
             this.Controls.Add(this.lblCategoryID);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmCategories";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmCategories";

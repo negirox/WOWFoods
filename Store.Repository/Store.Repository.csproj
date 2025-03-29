@@ -55,6 +55,7 @@
     <Compile Include="Repository\ILoginDAL.cs" />
     <Compile Include="Repository\IProductsDAL.cs" />
     <Compile Include="Repository\IReportRepository.cs" />
+    <Compile Include="Repository\IStaffTransactionDAL.cs" />
     <Compile Include="Repository\ITransactionDAL.cs" />
     <Compile Include="Repository\ITransactionDetailDAL.cs" />
     <Compile Include="Repository\IUserDAL.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Repository\ReportRepository.cs" />
     <Compile Include="Repository\SqlHelper.cs" />
     <Compile Include="Repository\SqlQueries.cs" />
+    <Compile Include="Repository\StaffTransactionDAL.cs" />
     <Compile Include="Repository\TransactionDAL.cs" />
     <Compile Include="Repository\TransactionDetailDAL.cs" />
     <Compile Include="Repository\UserDAL.cs" />

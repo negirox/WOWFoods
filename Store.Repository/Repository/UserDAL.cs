@@ -39,7 +39,10 @@ namespace Store.Repository.Repository
                 new SqlParameter("@gender", u.gender),
                 new SqlParameter("@user_type", u.user_type),
                 new SqlParameter("@added_date", u.added_date),
-                new SqlParameter("@added_by", u.added_by)
+                new SqlParameter("@added_by", u.added_by),
+                new SqlParameter("@userImage", u.userImage),
+                new SqlParameter("@userSalary", u.userSalary),
+                new SqlParameter("@aadharNo", u.aadharNo)
             };
 
             try
@@ -74,6 +77,9 @@ namespace Store.Repository.Repository
                 new SqlParameter("@user_type", u.user_type),
                 new SqlParameter("@added_date", u.added_date),
                 new SqlParameter("@added_by", u.added_by),
+                new SqlParameter("@userImage", u.userImage),
+                new SqlParameter("@userSalary", u.userSalary),
+                new SqlParameter("@aadharNo", u.aadharNo),
                 new SqlParameter("@id", u.id)
             };
 
@@ -160,6 +166,67 @@ namespace Store.Repository.Repository
             }
 
             return u;
+        }
+
+        public UserBLL GetUser(int id)
+        {
+            UserBLL u = new UserBLL();
+
+            SqlParameter[] parameters = {
+                new SqlParameter("@id", id)
+            };
+
+            try
+            {
+                DataTable dt = SqlHelper.ExecuteQuery(SqlQueries.SearchSingleUser, parameters);
+
+                if (dt.Rows.Count > 0)
+                {
+                    u.id = int.Parse(dt.Rows[0]["id"].ToString());
+                    u.first_name = dt.Rows[0]["first_name"].ToString();
+                    u.last_name = dt.Rows[0]["last_name"].ToString();
+                    u.email = dt.Rows[0]["email"].ToString();
+                    u.username = dt.Rows[0]["username"].ToString();
+                    u.password = dt.Rows[0]["password"].ToString();
+                    u.contact = dt.Rows[0]["contact"].ToString();
+                    int.TryParse(dt.Rows[0]["added_by"].ToString(), out int addedBy);
+                    u.added_by = addedBy;
+                    int.TryParse(dt.Rows[0]["user_type"].ToString(), out int userType);
+                    u.user_type = userType.ToString();
+                    u.added_date = DateTime.Parse(dt.Rows[0]["added_date"].ToString());
+                    u.userImage = (byte[])dt.Rows[0]["userImage"];
+                    u.userSalary = dt.Rows[0]["userSalary"].ToString();
+                    u.aadharNo = dt.Rows[0]["aadharNo"].ToString();
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                throw;
+            }
+
+            return u;
+        }
+
+        public bool UpdateUserSalary(int userId, decimal newSalary)
+        {
+            SqlParameter[] parameters = {
+                new SqlParameter("@userId", userId),
+                new SqlParameter("@newSalary", newSalary)
+            };
+            bool isSuccess;
+            try
+            {
+                int rows = SqlHelper.ExecuteNonQuery(SqlQueries.UpdateUserSalary, parameters);
+                isSuccess = rows > 0;
+            }
+            catch (Exception ex)
+            {
+                Logger.LogError(ex);
+                throw;
+            }
+
+            return isSuccess;
         }
         #endregion
     }

@@ -1,24 +1,18 @@
-﻿using AnyStore.DAL;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Store.Repository.Repository;
 
 namespace AnyStore.UI
 {
     public partial class frmTransactions : Form
     {
+
+        private readonly TransactionDAL tdal = new TransactionDAL();
         public frmTransactions()
         {
             InitializeComponent();
         }
-
-        transactionDAL tdal = new transactionDAL();
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
             this.Hide();

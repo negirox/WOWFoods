@@ -36,12 +36,33 @@ namespace Store.Repository.Repository
 
         public const string InsertTransactionDetail = "INSERT INTO tbl_transaction_detail (product_id, rate, qty, total, dea_cust_id, added_date, added_by) VALUES (@product_id, @rate, @qty, @total, @dea_cust_id, @added_date, @added_by)";
 
-        public const string SelectAllUsers = "SELECT * FROM tbl_users";
-        public const string InsertUser = "INSERT INTO tbl_users (first_name, last_name, email, username, password, contact, address, gender, user_type, added_date, added_by) VALUES (@first_name, @last_name, @email, @username, @password, @contact, @address, @gender, @user_type, @added_date, @added_by)";
-        public const string UpdateUser = "UPDATE tbl_users SET first_name=@first_name, last_name=@last_name, email=@email, username=@username, password=@password, contact=@contact, address=@address, gender=@gender, user_type=@user_type, added_date=@added_date, added_by=@added_by WHERE id=@id";
-        public const string DeleteUser = "DELETE FROM tbl_users WHERE id=@id";
-        public const string SearchUsers = "SELECT * FROM tbl_users WHERE id LIKE @keywords OR first_name LIKE @keywords OR last_name LIKE @keywords OR username LIKE @keywords";
-        public const string GetUserIDFromUsername = "SELECT id FROM tbl_users WHERE username=@username";
+
+        //public const string SelectAllUsers = @"SELECT id,
+        //first_name as FirstName, last_name as LastName, email as EmailId, username as UserName, password as Password, contact as ContactNo, address as Address, 
+        //gender as Gender, user_type as UserType, added_date as Created,
+        //userImage as UserImage, userSalary , aadharNo FROM tbl_Users";
+
+        public const string SelectAllUsers = @"SELECT id,
+        first_name as FirstName, last_name, email, username, password, contact, address, 
+        gender, user_type, added_date,
+        userImage, userSalary , aadharNo FROM tbl_Users";
+
+        public const string InsertUser = @"
+        INSERT INTO tbl_Users (first_name, last_name, email, username, password, contact, address, gender, user_type, added_date, added_by, userImage, userSalary, aadharNo)
+        VALUES (@first_name, @last_name, @email, @username, @password, @contact, @address, @gender, @user_type, @added_date, @added_by, @userImage, @userSalary, @aadharNo)";
+        public const string UpdateUser = @"
+        UPDATE tbl_Users
+        SET first_name = @first_name, last_name = @last_name, email = @email, username = @username, password = @password, contact = @contact, address = @address, gender = @gender, user_type = @user_type, added_date = @added_date, added_by = @added_by, userImage = @userImage, userSalary = @userSalary, aadharNo = @aadharNo
+        WHERE id = @id";
+        public const string DeleteUser = "DELETE FROM tbl_Users WHERE id = @id";
+        public const string SearchUsers = "SELECT * FROM tbl_Users WHERE first_name LIKE @keywords OR last_name LIKE @keywords OR email LIKE @keywords OR username LIKE @keywords";
+        public const string GetUserIDFromUsername = "SELECT id FROM tbl_Users WHERE username = @username";
+        public const string UpdateUserSalary = "UPDATE tbl_Users SET userSalary = @newSalary WHERE id = @userId";
+        public const string SearchSingleUser = "SELECT * FROM tbl_Users WHERE id=@id";
+
+
+        public const string GetStaffTransactionDetail = "SELECT * FROM StaffTransactions WHERE UserId = @UserId";
+        public const string InsertStaffTransactions = "INSERT INTO StaffTransactions (UserId, Amount, Reason, TransactionDate, TransactionType) VALUES (@UserId, @Amount, @Reason, @TransactionDate, @TransactionType)";
 
         public const string GetTransactionSummary = @"SELECT 
             CAST(transaction_date AS DATE) AS Date,

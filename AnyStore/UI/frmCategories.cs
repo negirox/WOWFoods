@@ -21,7 +21,7 @@ namespace AnyStore.UI
 
         private void pictureBoxClose_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
         }
 
         CategoriesBLL c = new CategoriesBLL();

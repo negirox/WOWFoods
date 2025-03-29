@@ -71,5 +71,11 @@ namespace AnyStore
             frmChart chart = new frmChart();
             chart.Show();
         }
+
+        private void dailyTransactionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DailyTransaction dailyTransaction = new DailyTransaction();
+            dailyTransaction.Show();
+        }
     }
 }
