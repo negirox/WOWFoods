@@ -117,10 +117,13 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(558, 21);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(937, 504);
@@ -177,6 +180,7 @@
             this.btnCarryForward.TabIndex = 12;
             this.btnCarryForward.Text = "Carry Forward";
             this.btnCarryForward.UseVisualStyleBackColor = false;
+            this.btnCarryForward.Visible = false;
             this.btnCarryForward.Click += new System.EventHandler(this.btnCarryForward_Click);
             // 
             // lblRemainingSalary

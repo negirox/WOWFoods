@@ -45,7 +45,7 @@ namespace AnyStore.UI
         {
             user = userService.GetUser(user.id);
             selectedUserId = user.id;
-            lblEmpSalary.Text = (user.userSalary ?? "0").ToString(CultureInfo.InvariantCulture);
+            lblEmpSalary.Text = (user.DefaultSalary ?? user.userSalary ?? "0").ToString(CultureInfo.InvariantCulture);
             lblRemainingSalary.Text = (user.userSalary ?? "0").ToString(CultureInfo.InvariantCulture); // Initialize remaining salary
             LoadTransactions();
             if (dataGridView1.Rows.Count > 1)
@@ -60,14 +60,51 @@ namespace AnyStore.UI
         private void LoadTransactions()
         {
             DataTable dt = transactionService.GetTransactionsByUserId(selectedUserId);
-            dataGridView1.DataSource = dt;
+
+            // Create a new DataTable with custom column names
+            DataTable customDt = new DataTable();
+            customDt.Columns.Add("Transaction ID", typeof(int));
+            //customDt.Columns.Add("User ID", typeof(int));
+            customDt.Columns.Add("Amount", typeof(decimal));
+            customDt.Columns.Add("Reason", typeof(string));
+            customDt.Columns.Add("Transaction Date", typeof(DateTime));
+            customDt.Columns.Add("Transaction Type", typeof(string));
+
+            // Populate the custom DataTable with data
+            foreach (DataRow row in dt.Rows)
+            {
+                customDt.Rows.Add(
+                    row["Id"],
+                    //row["UserId"],
+                    row["Amount"],
+                    row["Reason"],
+                    row["TransactionDate"],
+                    row["TransactionType"]
+                );
+            }
+
+            dataGridView1.DataSource = customDt;
+
             // Format the Amount column to use a period instead of a comma
             if (dataGridView1.Columns["Amount"] != null)
             {
                 dataGridView1.Columns["Amount"].DefaultCellStyle.FormatProvider = CultureInfo.InvariantCulture;
                 dataGridView1.Columns["Amount"].DefaultCellStyle.Format = "N2";
             }
+
+            // Apply additional formatting for a better look and feel
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.ColumnHeadersDefaultCellStyle.Font = new System.Drawing.Font("Arial", 10F, System.Drawing.FontStyle.Bold);
+            dataGridView1.DefaultCellStyle.Font = new System.Drawing.Font("Arial", 9F);
+            dataGridView1.DefaultCellStyle.ForeColor = System.Drawing.Color.Black;
+            dataGridView1.DefaultCellStyle.BackColor = System.Drawing.Color.White;
+            dataGridView1.DefaultCellStyle.SelectionForeColor = System.Drawing.Color.White;
+            dataGridView1.DefaultCellStyle.SelectionBackColor = System.Drawing.Color.DarkBlue;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = System.Drawing.Color.Navy;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = System.Drawing.Color.White;
         }
+
 
         private void btnWithDraw_Click(object sender, EventArgs e)
         {
@@ -110,11 +147,8 @@ namespace AnyStore.UI
             {
                 decimal newSalary = currentSalary + remainingSalary;
                 userService.UpdateUserSalary(selectedUserId, newSalary);
-                lblEmpSalary.Text = newSalary.ToString(CultureInfo.InvariantCulture);
-                lblRemainingSalary.Text = "0"; // Reset remaining salary
+                GetUserSalary(new UserBLL() { id = selectedUserId });
                 MessageBox.Show("Salary carried forward successfully.");
-                UserBLL user = userService.GetUser(selectedUserId);
-                GetUserSalary(user);
             }
             else
             {
@@ -124,7 +158,7 @@ namespace AnyStore.UI
 
         private void btnSettle_Click(object sender, EventArgs e)
         {
-            if (decimal.TryParse(lblEmpSalary.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal remainingAmount))
+            if (decimal.TryParse(lblRemainingSalary.Text, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal remainingAmount))
             {
                 StaffTransactionBLL transaction = new StaffTransactionBLL
                 {
@@ -139,9 +173,7 @@ namespace AnyStore.UI
                 if (isSuccess)
                 {
                     userService.UpdateUserSalary(selectedUserId, 0);
-                    lblEmpSalary.Text = "0";
-                    lblRemainingSalary.Text = "0"; // Reset remaining salary
-                    LoadTransactions();
+                    GetUserSalary(new UserBLL() { id= selectedUserId});
                     MessageBox.Show("Salary settled successfully.");
                 }
                 else
@@ -163,7 +195,7 @@ namespace AnyStore.UI
 
             for (int i = 0; i < dataGridView1.Rows.Count; i++)
             {
-                if (Convert.ToString(dataGridView1.Rows[i].Cells["TransactionType"].Value) == "Salary Withdraw")
+                if (Convert.ToString(dataGridView1.Rows[i].Cells["Transaction Type"].Value) == "Salary Withdraw")
                 {
                     lastSalaryWithdrawIndex = i;
                 }
