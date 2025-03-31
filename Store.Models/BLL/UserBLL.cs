@@ -17,6 +17,8 @@ namespace Store.Models.BLL
         public DateTime added_date { get; set; }
         public byte[] userImage { get; set; } // New property
         public string userSalary { get; set; } // New property
+
+        public string DefaultSalary { get; set; } // New property
         public string aadharNo { get; set; } // New property
         public int added_by { get; set; }
     }

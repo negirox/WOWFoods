@@ -45,14 +45,16 @@ namespace Store.Repository.Repository
         public const string SelectAllUsers = @"SELECT id,
         first_name as FirstName, last_name, email, username, password, contact, address, 
         gender, user_type, added_date,
-        userImage, userSalary , aadharNo FROM tbl_Users";
+        userImage, userSalary , aadharNo, DefaultSalary FROM tbl_Users";
 
         public const string InsertUser = @"
-        INSERT INTO tbl_Users (first_name, last_name, email, username, password, contact, address, gender, user_type, added_date, added_by, userImage, userSalary, aadharNo)
-        VALUES (@first_name, @last_name, @email, @username, @password, @contact, @address, @gender, @user_type, @added_date, @added_by, @userImage, @userSalary, @aadharNo)";
+        INSERT INTO tbl_Users (first_name, last_name, email, username, password, contact, address, gender, user_type, added_date, added_by, userImage, userSalary, aadharNo,DefaultSalary)
+        VALUES (@first_name, @last_name, @email, @username, @password, @contact, @address, @gender, @user_type, @added_date, @added_by, @userImage, @userSalary, @aadharNo,@DefaultSalary)";
         public const string UpdateUser = @"
         UPDATE tbl_Users
-        SET first_name = @first_name, last_name = @last_name, email = @email, username = @username, password = @password, contact = @contact, address = @address, gender = @gender, user_type = @user_type, added_date = @added_date, added_by = @added_by, userImage = @userImage, userSalary = @userSalary, aadharNo = @aadharNo
+        SET first_name = @first_name, last_name = @last_name, email = @email, username = @username, password = @password, contact = @contact, address = @address, gender = @gender, user_type = @user_type,
+        added_date = @added_date, added_by = @added_by, userImage = @userImage, 
+        userSalary = @userSalary, aadharNo = @aadharNo, DefaultSalary = @DefaultSalary
         WHERE id = @id";
         public const string DeleteUser = "DELETE FROM tbl_Users WHERE id = @id";
         public const string SearchUsers = "SELECT * FROM tbl_Users WHERE first_name LIKE @keywords OR last_name LIKE @keywords OR email LIKE @keywords OR username LIKE @keywords";

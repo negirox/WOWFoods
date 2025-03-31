@@ -42,7 +42,8 @@ namespace Store.Repository.Repository
                 new SqlParameter("@added_by", u.added_by),
                 new SqlParameter("@userImage", u.userImage),
                 new SqlParameter("@userSalary", u.userSalary),
-                new SqlParameter("@aadharNo", u.aadharNo)
+                new SqlParameter("@aadharNo", u.aadharNo),
+                new SqlParameter("@DefaultSalary", u.userSalary),
             };
 
             try
@@ -179,24 +180,23 @@ namespace Store.Repository.Repository
             try
             {
                 DataTable dt = SqlHelper.ExecuteQuery(SqlQueries.SearchSingleUser, parameters);
-
                 if (dt.Rows.Count > 0)
                 {
-                    u.id = int.Parse(dt.Rows[0]["id"].ToString());
-                    u.first_name = dt.Rows[0]["first_name"].ToString();
-                    u.last_name = dt.Rows[0]["last_name"].ToString();
-                    u.email = dt.Rows[0]["email"].ToString();
-                    u.username = dt.Rows[0]["username"].ToString();
-                    u.password = dt.Rows[0]["password"].ToString();
-                    u.contact = dt.Rows[0]["contact"].ToString();
-                    int.TryParse(dt.Rows[0]["added_by"].ToString(), out int addedBy);
-                    u.added_by = addedBy;
-                    int.TryParse(dt.Rows[0]["user_type"].ToString(), out int userType);
-                    u.user_type = userType.ToString();
-                    u.added_date = DateTime.Parse(dt.Rows[0]["added_date"].ToString());
-                    u.userImage = (byte[])dt.Rows[0]["userImage"];
-                    u.userSalary = dt.Rows[0]["userSalary"].ToString();
-                    u.aadharNo = dt.Rows[0]["aadharNo"].ToString();
+                    u.id = int.Parse(Convert.ToString(dt.Rows[0]["id"]));
+                    u.first_name = Convert.ToString(dt.Rows[0]["first_name"]);
+                    u.last_name = Convert.ToString(dt.Rows[0]["last_name"]);
+                    u.email = Convert.ToString(dt.Rows[0]["email"]);
+                    u.username = Convert.ToString(dt.Rows[0]["username"]);
+                    u.password = Convert.ToString(dt.Rows[0]["password"]);
+                    u.contact = Convert.ToString(dt.Rows[0]["contact"]);
+                    u.address = Convert.ToString(dt.Rows[0]["address"]);
+                    u.gender = Convert.ToString(dt.Rows[0]["gender"]);
+                    u.user_type = Convert.ToString(dt.Rows[0]["user_type"]);
+                    u.added_date = DateTime.Parse(Convert.ToString(dt.Rows[0]["added_date"]));
+                    u.userImage = dt.Rows[0]["userImage"] != DBNull.Value ? (byte[])dt.Rows[0]["userImage"] : null;
+                    u.userSalary = Convert.ToString(dt.Rows[0]["userSalary"]);
+                    u.aadharNo = Convert.ToString(dt.Rows[0]["aadharNo"]);
+                    u.DefaultSalary = Convert.ToString(dt.Rows[0]["DefaultSalary"]);
                 }
             }
             catch (Exception ex)

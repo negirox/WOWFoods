@@ -79,7 +79,7 @@
             // 
             this.lblEmpSalary.AutoSize = true;
             this.lblEmpSalary.Font = new System.Drawing.Font("Microsoft YaHei", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmpSalary.Location = new System.Drawing.Point(266, 121);
+            this.lblEmpSalary.Location = new System.Drawing.Point(277, 121);
             this.lblEmpSalary.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmpSalary.Name = "lblEmpSalary";
             this.lblEmpSalary.Size = new System.Drawing.Size(0, 40);
@@ -96,7 +96,7 @@
             // lblDailyAmount
             // 
             this.lblDailyAmount.AutoSize = true;
-            this.lblDailyAmount.Location = new System.Drawing.Point(85, 214);
+            this.lblDailyAmount.Location = new System.Drawing.Point(81, 217);
             this.lblDailyAmount.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDailyAmount.Name = "lblDailyAmount";
             this.lblDailyAmount.Size = new System.Drawing.Size(99, 28);
@@ -117,19 +117,22 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(558, 21);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(591, 504);
+            this.dataGridView1.Size = new System.Drawing.Size(937, 504);
             this.dataGridView1.TabIndex = 7;
             // 
             // lblRemaining
             // 
             this.lblRemaining.AutoSize = true;
-            this.lblRemaining.Location = new System.Drawing.Point(81, 172);
+            this.lblRemaining.Location = new System.Drawing.Point(81, 163);
             this.lblRemaining.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRemaining.Name = "lblRemaining";
             this.lblRemaining.Size = new System.Drawing.Size(168, 28);
@@ -139,7 +142,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(85, 281);
+            this.label1.Location = new System.Drawing.Point(81, 281);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(77, 28);
@@ -165,6 +168,7 @@
             this.btnSettle.TabIndex = 11;
             this.btnSettle.Text = "Settle";
             this.btnSettle.UseVisualStyleBackColor = false;
+            this.btnSettle.Click += new System.EventHandler(this.btnSettle_Click);
             // 
             // btnCarryForward
             // 
@@ -176,11 +180,13 @@
             this.btnCarryForward.TabIndex = 12;
             this.btnCarryForward.Text = "Carry Forward";
             this.btnCarryForward.UseVisualStyleBackColor = false;
+            this.btnCarryForward.Visible = false;
+            this.btnCarryForward.Click += new System.EventHandler(this.btnCarryForward_Click);
             // 
             // lblRemainingSalary
             // 
             this.lblRemainingSalary.AutoSize = true;
-            this.lblRemainingSalary.Location = new System.Drawing.Point(257, 172);
+            this.lblRemainingSalary.Location = new System.Drawing.Point(268, 163);
             this.lblRemainingSalary.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRemainingSalary.Name = "lblRemainingSalary";
             this.lblRemainingSalary.Size = new System.Drawing.Size(0, 28);
@@ -191,7 +197,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.BurlyWood;
-            this.ClientSize = new System.Drawing.Size(1223, 604);
+            this.ClientSize = new System.Drawing.Size(1508, 604);
             this.Controls.Add(this.lblRemainingSalary);
             this.Controls.Add(this.btnCarryForward);
             this.Controls.Add(this.btnSettle);
